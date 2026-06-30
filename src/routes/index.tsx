@@ -2,7 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Star, Sparkles, Check } from "lucide-react";
 import { Layout } from "@/components/site/Layout";
-import { stats, projects, platforms, services } from "@/lib/site-data";
+import { stats, projects, services } from "@/lib/site-data";
+import { PlatformLogos } from "@/components/site/PlatformLogos";
+import { SitePreview } from "@/components/site/SitePreview";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -164,21 +166,14 @@ function Home() {
 
       {/* PLATFORMS */}
       <section className="mx-auto max-w-7xl px-6 py-24">
-        <h2 className="font-display text-3xl sm:text-5xl font-bold text-center tracking-tight">Platforms we master.</h2>
-        <div className="mt-12 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-          {platforms.map((p, i) => (
-            <motion.div
-              key={p}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.04 }}
-              className="aspect-square glass rounded-2xl grid place-items-center hover:bg-secondary/40 hover:-translate-y-1 transition-all"
-            >
-              <span className="font-display font-semibold text-sm sm:text-base text-center px-2">{p}</span>
-            </motion.div>
-          ))}
+        <div className="text-center mb-14">
+          <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium">Stack</p>
+          <h2 className="mt-3 font-display text-4xl sm:text-6xl font-bold tracking-tight">Platforms we master.</h2>
+          <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+            Certified, battle-tested expertise across every major eCommerce, ads and marketing platform.
+          </p>
         </div>
+        <PlatformLogos />
       </section>
 
       {/* TESTIMONIAL PREVIEW */}
@@ -254,20 +249,8 @@ function ProjectPreview({ project, delay }: { project: typeof projects[number]; 
       transition={{ delay }}
       className="group block rounded-3xl overflow-hidden bg-card border border-border hover:border-accent/50 transition-all hover:-translate-y-1"
     >
-      <div className="aspect-[16/10] relative overflow-hidden bg-secondary/40">
-        <div className="absolute inset-x-0 top-0 h-8 bg-card/80 backdrop-blur flex items-center gap-1.5 px-3 border-b border-border z-10">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
-          <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
-          <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
-          <span className="ml-3 text-[10px] text-muted-foreground truncate">{project.url}</span>
-        </div>
-        <iframe
-          src={project.url}
-          title={project.name}
-          loading="lazy"
-          className="absolute inset-0 w-full h-full pt-8 pointer-events-none scale-[0.6] origin-top-left"
-          style={{ width: "166.67%", height: "166.67%" }}
-        />
+      <div className="aspect-[16/10] relative">
+        <SitePreview url={project.url} title={project.name} />
       </div>
       <div className="p-6 flex items-center justify-between">
         <div>

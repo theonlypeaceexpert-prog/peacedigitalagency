@@ -2,14 +2,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/site/Layout";
 import { projects } from "@/lib/site-data";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { SitePreview } from "@/components/site/SitePreview";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
       { title: "Portfolio — DǝǝPeaçeAɠency" },
-      { name: "description", content: "Selected eCommerce projects: FunnyFuzzy, Boody, Ryderwear, Jamie Kay, Slick Gorilla and more." },
+      { name: "description", content: "Live previews of premium eCommerce brands we've designed, built and scaled — Shopify, WooCommerce and custom stacks." },
+      { property: "og:title", content: "Portfolio — DǝǝPeaçeAɠency" },
+      { property: "og:url", content: "/portfolio" },
     ],
+    links: [{ rel: "canonical", href: "/portfolio" }],
   }),
   component: Portfolio,
 });
@@ -18,19 +22,35 @@ export default function Portfolio() {
   return (
     <Layout>
       <section className="mx-auto max-w-7xl px-6 py-20">
-        <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium">Portfolio</p>
-        <h1 className="mt-4 font-display text-5xl sm:text-7xl font-bold tracking-tight max-w-4xl">
-          Brands we've helped scale.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Live previews. Real results. Tap any card to visit the production site.
-        </p>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-sm uppercase tracking-[0.2em] text-accent font-medium"
+        >
+          Portfolio
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mt-4 font-display text-5xl sm:text-7xl font-bold tracking-tight max-w-4xl text-balance"
+        >
+          Brands we've helped <span className="italic font-light text-gradient">scale.</span>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.25 }}
+          className="mt-6 max-w-2xl text-lg text-muted-foreground"
+        >
+          Live homepage previews — auto-scrolling. Hover to pause. Click any card to visit the production site.
+        </motion.p>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-24">
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {projects.map((p, i) => (
-            <Card key={p.name} p={p} delay={(i % 4) * 0.06} />
+            <Card key={p.name} p={p} delay={(i % 4) * 0.08} />
           ))}
         </div>
       </section>
@@ -40,52 +60,40 @@ export default function Portfolio() {
 
 function Card({ p, delay }: { p: typeof projects[number]; delay: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
+    <motion.a
+      href={p.url}
+      target="_blank"
+      rel="noreferrer"
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay }}
-      className="group rounded-3xl overflow-hidden bg-card border border-border hover:border-accent/50 transition-all hover:-translate-y-1"
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ delay, duration: 0.6 }}
+      className="group block rounded-3xl overflow-hidden bg-card border border-border hover:border-accent/50 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.15)]"
     >
-      <div className="aspect-[16/10] relative overflow-hidden bg-secondary/40">
-        <div className="absolute inset-x-0 top-0 h-8 bg-card/90 backdrop-blur flex items-center gap-1.5 px-3 border-b border-border z-10">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
-          <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
-          <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
-          <span className="ml-3 text-[10px] text-muted-foreground truncate">{p.url}</span>
-        </div>
-        <div className="absolute inset-0 pt-8 overflow-hidden">
-          <iframe
-            src={p.url}
-            title={p.name}
-            loading="lazy"
-            className="w-full h-[260%] pointer-events-none animate-[scroll-preview_22s_linear_infinite] group-hover:[animation-play-state:paused]"
-            style={{ transformOrigin: "top left" }}
-          />
-        </div>
-        <style>{`@keyframes scroll-preview { 0%,10%{transform:translateY(0)} 90%,100%{transform:translateY(-60%)} }`}</style>
+      <div className="aspect-[16/10] relative">
+        <SitePreview url={p.url} title={p.name} />
       </div>
-      <div className="p-6">
+      <div className="p-6 sm:p-7">
         <div className="flex items-start justify-between gap-4">
-          <div>
-            <h3 className="font-display text-2xl font-semibold">{p.name}</h3>
+          <div className="min-w-0">
+            <h3 className="font-display text-2xl font-semibold tracking-tight">{p.name}</h3>
             <p className="text-xs text-muted-foreground mt-1">{p.industry}</p>
           </div>
-          <a
-            href={p.url}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-2 text-xs font-medium hover:opacity-90"
+          <span
+            className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-2 text-xs font-medium group-hover:bg-accent group-hover:text-accent-foreground transition-colors"
+            onClick={(e) => { e.stopPropagation(); window.open(p.url, "_blank", "noopener,noreferrer"); }}
           >
-            Visit <ExternalLink size={12} />
-          </a>
+            Visit Website <ExternalLink size={12} />
+          </span>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           {p.services.map((s) => (
-            <span key={s} className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">{s}</span>
+            <span key={s} className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">
+              {s}
+            </span>
           ))}
         </div>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }

@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Mail, MessageCircle } from "lucide-react";
+import logoAsset from "@/assets/deepeace-logo-transparent.png.asset.json";
 
 export function Footer() {
   return (
@@ -7,6 +8,13 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
+            <img
+              src={logoAsset.url}
+              alt="DeePeace Agency"
+              loading="lazy"
+              decoding="async"
+              className="h-14 md:h-16 w-auto object-contain mb-6 -ml-2"
+            />
             <h3 className="font-display text-3xl font-bold tracking-tight text-foreground">
               Let's build something <span className="text-accent">extraordinary.</span>
             </h3>

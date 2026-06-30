@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import logoAsset from "@/assets/deepeace-logo-transparent.png.asset.json";
 
 const links = [
   { to: "/", label: "Home" },
@@ -40,13 +41,17 @@ export function Nav() {
             scrolled ? "glass shadow-[0_8px_30px_rgba(0,0,0,0.06)]" : ""
           }`}
         >
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="relative h-8 w-8 rounded-full bg-gradient-to-br from-foreground to-accent grid place-items-center">
-              <span className="text-background font-display font-bold text-sm">D</span>
-            </div>
-            <span className="font-display font-semibold tracking-tight text-foreground">
-              DǝǝPeaçe<span className="text-accent">Aɠency</span>
-            </span>
+          <Link to="/" className="flex items-center gap-2 group" aria-label="DeePeace Agency — Home">
+            <motion.img
+              src={logoAsset.url}
+              alt="DeePeace Agency"
+              initial={{ opacity: 0, scale: 0.85, y: -4 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="h-9 sm:h-10 md:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              loading="eager"
+              decoding="async"
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">

@@ -48,7 +48,7 @@ export default function Portfolio() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-24">
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((p, i) => (
             <Card key={p.name} p={p} delay={(i % 4) * 0.08} />
           ))}

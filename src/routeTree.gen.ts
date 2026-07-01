@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UgcRouteImport } from './routes/ugc'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ResultsRouteImport } from './routes/results'
@@ -18,6 +19,11 @@ import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UgcRoute = UgcRouteImport.update({
+  id: '/ugc',
+  path: '/ugc',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/results': typeof ResultsRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
+  '/ugc': typeof UgcRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/results': typeof ResultsRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
+  '/ugc': typeof UgcRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/results': typeof ResultsRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
+  '/ugc': typeof UgcRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/results'
     | '/reviews'
     | '/services'
+    | '/ugc'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/results'
     | '/reviews'
     | '/services'
+    | '/ugc'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/results'
     | '/reviews'
     | '/services'
+    | '/ugc'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,10 +144,18 @@ export interface RootRouteChildren {
   ResultsRoute: typeof ResultsRoute
   ReviewsRoute: typeof ReviewsRoute
   ServicesRoute: typeof ServicesRoute
+  UgcRoute: typeof UgcRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/ugc': {
+      id: '/ugc'
+      path: '/ugc'
+      fullPath: '/ugc'
+      preLoaderRoute: typeof UgcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResultsRoute: ResultsRoute,
   ReviewsRoute: ReviewsRoute,
   ServicesRoute: ServicesRoute,
+  UgcRoute: UgcRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

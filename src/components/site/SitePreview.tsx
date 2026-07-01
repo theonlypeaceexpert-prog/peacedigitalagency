@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 
 interface Props {
   url: string;
@@ -12,42 +11,41 @@ interface Props {
  * Realistic desktop browser mockup with a full-page screenshot that
  * auto-scrolls top→bottom in a continuous loop and pauses on hover.
  *
- * Uses WordPress mShots (free, no key, full-page capture) with a Microlink
- * fallback so cards never stay blank.
+ * Uses WordPress mShots (free, full-page, no key) with fallbacks so cards
+ * never stay blank.
  */
 export function SitePreview({ url, title, duration = 22 }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [srcIndex, setSrcIndex] = useState(0);
-  const [scrollDistance, setScrollDistance] = useState(0);
+  const [distance, setDistance] = useState(0);
   const imgRef = useRef<HTMLImageElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);
 
   const encoded = encodeURIComponent(url);
-  // Ordered fallbacks — all return a full-page PNG/JPG at ~1200px wide.
   const sources = [
-    `https://s.wordpress.com/mshots/v1/${encoded}?w=1200&h=3000`,
+    `https://s.wordpress.com/mshots/v1/${encoded}?w=1200&h=3200`,
     `https://api.microlink.io/?url=${encoded}&screenshot=true&meta=false&embed=screenshot.url&screenshot.fullPage=true&viewport.width=1280`,
     `https://image.thum.io/get/width/1200/png/noanimate/${url}`,
   ];
 
-  // Recompute scroll distance whenever the image finishes loading or the
-  // frame resizes, so the animation always ends exactly at the image bottom.
   useEffect(() => {
     if (!loaded) return;
     const calc = () => {
       const frame = frameRef.current;
       const img = imgRef.current;
       if (!frame || !img) return;
-      const frameH = frame.clientHeight - 36; // subtract chrome height
+      const visibleH = frame.clientHeight - 36;
       const imgH = img.clientHeight;
-      setScrollDistance(Math.max(0, imgH - frameH));
+      setDistance(Math.max(0, imgH - visibleH));
     };
     calc();
     const ro = new ResizeObserver(calc);
     if (frameRef.current) ro.observe(frameRef.current);
     if (imgRef.current) ro.observe(imgRef.current);
     return () => ro.disconnect();
-  }, [loaded]);
+  }, [loaded, srcIndex]);
+
+  const animName = `scroll-${Math.round(duration)}`;
 
   return (
     <div
@@ -66,16 +64,14 @@ export function SitePreview({ url, title, duration = 22 }: Props) {
         </div>
       </div>
 
-      {/* Loading spinner */}
       {!loaded && (
         <div className="absolute inset-0 pt-9 grid place-items-center z-10">
           <div className="h-8 w-8 rounded-full border-2 border-accent border-t-transparent animate-spin" />
         </div>
       )}
 
-      {/* Screenshot layer — auto-scrolls when loaded */}
       <div className="absolute inset-0 pt-9 overflow-hidden">
-        <motion.img
+        <img
           ref={imgRef}
           key={srcIndex}
           src={sources[srcIndex]}
@@ -91,64 +87,25 @@ export function SitePreview({ url, title, duration = 22 }: Props) {
               setLoaded(true);
             }
           }}
-          className="w-full block will-change-transform"
-          initial={{ opacity: 0 }}
-          animate={
-            loaded && scrollDistance > 0
-              ? {
-                  opacity: 1,
-                  y: [0, -scrollDistance, -scrollDistance, 0, 0],
-                }
-              : { opacity: loaded ? 1 : 0, y: 0 }
-          }
-          transition={
-            loaded && scrollDistance > 0
-              ? {
-                  opacity: { duration: 0.6 },
-                  y: {
-                    duration,
-                    times: [0, 0.45, 0.55, 0.95, 1],
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatDelay: 0.4,
-                  },
-                }
-              : { duration: 0.5 }
-          }
+          className="w-full block will-change-transform group-hover/preview:[animation-play-state:paused]"
           style={{
-            animationPlayState: "running",
+            opacity: loaded ? 1 : 0,
+            transition: "opacity 0.5s ease",
+            animation:
+              loaded && distance > 0
+                ? `${animName} ${duration}s ease-in-out infinite`
+                : undefined,
           }}
         />
       </div>
 
-      {/* Hover pause overlay */}
       <style>{`
-        .group\\/preview:hover img { animation-play-state: paused; }
+        @keyframes ${animName} {
+          0%, 6%   { transform: translateY(0); }
+          50%      { transform: translateY(-${distance}px); }
+          94%, 100%{ transform: translateY(0); }
+        }
       `}</style>
-      <PauseOnHover targetRef={frameRef} />
     </div>
   );
-}
-
-/**
- * Pauses the Framer Motion animation while the pointer is over the card,
- * by toggling a data attribute the parent watches. We use a small child
- * component so we can hook into pointer events without re-rendering the img.
- */
-function PauseOnHover({ targetRef }: { targetRef: React.RefObject<HTMLDivElement | null> }) {
-  useEffect(() => {
-    const el = targetRef.current;
-    if (!el) return;
-    const img = el.querySelector("img");
-    if (!img) return;
-    const onEnter = () => ((img as HTMLElement).style.animationPlayState = "paused");
-    const onLeave = () => ((img as HTMLElement).style.animationPlayState = "running");
-    el.addEventListener("mouseenter", onEnter);
-    el.addEventListener("mouseleave", onLeave);
-    return () => {
-      el.removeEventListener("mouseenter", onEnter);
-      el.removeEventListener("mouseleave", onLeave);
-    };
-  }, [targetRef]);
-  return null;
 }

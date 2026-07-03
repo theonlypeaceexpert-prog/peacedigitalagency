@@ -8,7 +8,12 @@ export const Route = createFileRoute("/case-studies")({
     meta: [
       { title: "Case Studies — DǝǝPeaçeAɠency" },
       { name: "description", content: "Deep dives into how we scaled premium eCommerce brands through design, development and AI-powered systems." },
+      { property: "og:title", content: "Case Studies — DǝǝPeaçeAɠency" },
+      { property: "og:description", content: "Deep dives into how we scaled premium eCommerce brands through design, development and AI-powered systems." },
+      { property: "og:url", content: "https://peacedigitalagency.lovable.app/case-studies" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/case-studies" }],
   }),
   component: CaseStudies,
 });

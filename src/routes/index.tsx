@@ -11,6 +11,26 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "DǝǝPeaçeAɠency — Premium Growth for eCommerce" },
       { name: "description", content: "We design, build and scale premium eCommerce experiences with AI-powered systems and conversion-led design." },
+      { property: "og:title", content: "DǝǝPeaçeAɠency — Premium Growth for eCommerce" },
+      { property: "og:description", content: "We design, build and scale premium eCommerce experiences with AI-powered systems and conversion-led design." },
+      { property: "og:url", content: "https://peacedigitalagency.lovable.app/" },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            { "@type": "Question", name: "What kind of brands do you work with?", acceptedAnswer: { "@type": "Answer", text: "Ambitious eCommerce brands doing $50k+/month who want a premium partner — not a freelancer, not a sweatshop agency." } },
+            { "@type": "Question", name: "How fast can you start?", acceptedAnswer: { "@type": "Answer", text: "Most engagements kick off within 7 days. Strategy calls are usually available within 48h." } },
+            { "@type": "Question", name: "Do you only do Shopify?", acceptedAnswer: { "@type": "Answer", text: "Shopify is our specialty, but we ship beautifully on WooCommerce, Wix, GoDaddy and custom stacks too." } },
+            { "@type": "Question", name: "Where are you based?", acceptedAnswer: { "@type": "Answer", text: "Remote-first, with senior talent across the UK, EU and APAC. We work in your timezone." } },
+          ],
+        }),
+      },
     ],
   }),
   component: Home,

@@ -1,0 +1,15 @@
+# DǝǝPeaçeAɠency
+
+> Premium digital growth agency for ambitious eCommerce brands — Shopify development, AI automation, performance marketing, SEO/GEO, UGC and AI commercial video.
+
+## Pages
+
+- [Home](/): Overview of services, featured work, testimonials.
+- [About](/about): Studio story, values and team.
+- [Services](/services): Full growth stack — Shopify, AI, ads, SEO, video.
+- [Portfolio](/portfolio): Live previews of premium eCommerce brands we've built.
+- [UGC & Video](/ugc): UGC, AI commercials and product film reel.
+- [Case Studies](/case-studies): Deep dives into projects and outcomes.
+- [Results](/results): Metrics — revenue lift, ROAS, conversion rate.
+- [Reviews](/reviews): What founders and CMOs say about working with us.
+- [Contact](/contact): Start a project or book a strategy call.

@@ -90,8 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#F8F8F6" },
       { name: "twitter:title", content: "DǝǝPeaçeAɠency — Premium Digital Growth for eCommerce Brands" },
       { name: "twitter:description", content: "Elite digital agency specializing in Shopify, AI automation, performance marketing and conversion-led design for ambitious eCommerce brands." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c0bcd77f-b8ce-4948-95c3-45b0b5e89795/id-preview-69d31bb3--641e856f-4554-47dd-8e57-edf4194216ab.lovable.app-1782913746252.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c0bcd77f-b8ce-4948-95c3-45b0b5e89795/id-preview-69d31bb3--641e856f-4554-47dd-8e57-edf4194216ab.lovable.app-1782913746252.png" },
+      { property: "og:site_name", content: "DǝǝPeaçeAɠency" },
     ],
     links: [
       { rel: "icon", type: "image/png", href: faviconAsset.url },
@@ -100,6 +99,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" },
       { rel: "stylesheet", href: appCss },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://peacedigitalagency.lovable.app/#organization",
+              name: "DǝǝPeaçeAɠency",
+              url: "https://peacedigitalagency.lovable.app",
+              logo: `https://peacedigitalagency.lovable.app${logoAsset.url}`,
+              description: "Premium digital growth agency for ambitious eCommerce brands.",
+              foundingDate: "2021",
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://peacedigitalagency.lovable.app/#website",
+              url: "https://peacedigitalagency.lovable.app",
+              name: "DǝǝPeaçeAɠency",
+              publisher: { "@id": "https://peacedigitalagency.lovable.app/#organization" },
+            },
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,

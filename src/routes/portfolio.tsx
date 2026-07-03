@@ -11,9 +11,11 @@ export const Route = createFileRoute("/portfolio")({
       { title: "Portfolio — DǝǝPeaçeAɠency" },
       { name: "description", content: "Live previews of premium eCommerce brands we've designed, built and scaled — Shopify, WooCommerce and custom stacks." },
       { property: "og:title", content: "Portfolio — DǝǝPeaçeAɠency" },
-      { property: "og:url", content: "/portfolio" },
+      { property: "og:description", content: "Live previews of premium eCommerce brands we've designed, built and scaled — Shopify, WooCommerce and custom stacks." },
+      { property: "og:url", content: "https://peacedigitalagency.lovable.app/portfolio" },
+      { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/portfolio" }],
+    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/portfolio" }],
   }),
   component: Portfolio,
 });

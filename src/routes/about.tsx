@@ -8,7 +8,12 @@ export const Route = createFileRoute("/about")({
     meta: [
       { title: "About — DǝǝPeaçeAɠency" },
       { name: "description", content: "Boutique digital growth studio crafting premium Shopify experiences and AI-powered systems for ambitious global brands." },
+      { property: "og:title", content: "About — DǝǝPeaçeAɠency" },
+      { property: "og:description", content: "Boutique digital growth studio crafting premium Shopify experiences and AI-powered systems for ambitious global brands." },
+      { property: "og:url", content: "https://peacedigitalagency.lovable.app/about" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/about" }],
   }),
   component: About,
 });

@@ -11,9 +11,30 @@ export const Route = createFileRoute("/contact")({
       { title: "Contact — DǝǝPeaçeAɠency" },
       { name: "description", content: "Tell us about your project. We'll send back a tailored growth plan within 24 hours." },
       { property: "og:title", content: "Contact — DǝǝPeaçeAɠency" },
-      { property: "og:url", content: "/contact" },
+      { property: "og:description", content: "Tell us about your project. We'll send back a tailored growth plan within 24 hours." },
+      { property: "og:url", content: "https://peacedigitalagency.lovable.app/contact" },
+      { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/contact" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "DǝǝPeaçeAɠency",
+          url: "https://peacedigitalagency.lovable.app",
+          description: "Premium digital growth agency for eCommerce brands — Shopify, AI automation, performance marketing.",
+          areaServed: "Worldwide",
+          contactPoint: {
+            "@type": "ContactPoint",
+            email: "theonlypeaceexpert@gmail.com",
+            contactType: "sales",
+            availableLanguage: ["English"],
+          },
+        }),
+      },
+    ],
   }),
   component: Contact,
 });

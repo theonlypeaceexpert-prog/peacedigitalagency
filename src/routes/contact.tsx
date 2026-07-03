@@ -190,18 +190,8 @@ export default function Contact() {
                 </div>
                 <Select label="Project budget" name="budget" options={["< $5k", "$5k – $15k", "$15k – $50k", "$50k+"]} error={errors.budget} />
                 <Select label="Service needed" name="service" options={["Shopify Build", "Performance Marketing", "AI Automation", "Full Growth Partner", "SEO / GEO", "Other"]} error={errors.service} />
-                <div>
-                  <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Project details</label>
-                  <textarea
-                    name="details"
-                    rows={5}
-                    required
-                    minLength={20}
-                    maxLength={4000}
-                    className="mt-2 w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent transition resize-none"
-                  />
-                  {errors.details && <p className="mt-1.5 text-xs text-destructive">{errors.details}</p>}
-                </div>
+                <Textarea label="Project details" name="details" error={errors.details} />
+
 
                 {status === "error" && (
                   <p className="text-sm text-destructive">Send failed: {errorMsg}. Try again or email us directly.</p>

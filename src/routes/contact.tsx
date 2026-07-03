@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { Layout } from "@/components/site/Layout";
 import { Mail, MessageCircle, Instagram, Music2, Clock, MapPin, Check, Loader2 } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 import { z } from "zod";
 
 export const Route = createFileRoute("/contact")({
@@ -190,18 +190,8 @@ export default function Contact() {
                 </div>
                 <Select label="Project budget" name="budget" options={["< $5k", "$5k – $15k", "$15k – $50k", "$50k+"]} error={errors.budget} />
                 <Select label="Service needed" name="service" options={["Shopify Build", "Performance Marketing", "AI Automation", "Full Growth Partner", "SEO / GEO", "Other"]} error={errors.service} />
-                <div>
-                  <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Project details</label>
-                  <textarea
-                    name="details"
-                    rows={5}
-                    required
-                    minLength={20}
-                    maxLength={4000}
-                    className="mt-2 w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent transition resize-none"
-                  />
-                  {errors.details && <p className="mt-1.5 text-xs text-destructive">{errors.details}</p>}
-                </div>
+                <Textarea label="Project details" name="details" error={errors.details} />
+
 
                 {status === "error" && (
                   <p className="text-sm text-destructive">Send failed: {errorMsg}. Try again or email us directly.</p>
@@ -227,10 +217,12 @@ export default function Contact() {
 }
 
 function Field({ label, name, type = "text", required, error }: { label: string; name: string; type?: string; required?: boolean; error?: string }) {
+  const id = useId();
   return (
     <div>
-      <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</label>
+      <label htmlFor={id} className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</label>
       <input
+        id={id}
         name={name}
         type={type}
         required={required}
@@ -244,10 +236,12 @@ function Field({ label, name, type = "text", required, error }: { label: string;
 }
 
 function Select({ label, name, options, error }: { label: string; name: string; options: string[]; error?: string }) {
+  const id = useId();
   return (
     <div>
-      <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</label>
+      <label htmlFor={id} className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</label>
       <select
+        id={id}
         name={name}
         defaultValue=""
         className="mt-2 w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent transition"
@@ -256,6 +250,26 @@ function Select({ label, name, options, error }: { label: string; name: string; 
         <option value="" disabled>Select...</option>
         {options.map((o) => <option key={o}>{o}</option>)}
       </select>
+      {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
+    </div>
+  );
+}
+
+function Textarea({ label, name, error }: { label: string; name: string; error?: string }) {
+  const id = useId();
+  return (
+    <div>
+      <label htmlFor={id} className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</label>
+      <textarea
+        id={id}
+        name={name}
+        rows={5}
+        required
+        minLength={20}
+        maxLength={4000}
+        className="mt-2 w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent transition resize-none"
+        aria-invalid={!!error}
+      />
       {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
     </div>
   );

@@ -9,7 +9,12 @@ export const Route = createFileRoute("/services")({
     meta: [
       { title: "Services — DǝǝPeaçeAɠency" },
       { name: "description", content: "Shopify development, AI automation, SEO/GEO, performance marketing, UGC and AI commercial video — all under one roof." },
+      { property: "og:title", content: "Services — DǝǝPeaçeAɠency" },
+      { property: "og:description", content: "Shopify development, AI automation, SEO/GEO, performance marketing, UGC and AI commercial video — all under one roof." },
+      { property: "og:url", content: "https://peacedigitalagency.lovable.app/services" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/services" }],
   }),
   component: Services,
 });

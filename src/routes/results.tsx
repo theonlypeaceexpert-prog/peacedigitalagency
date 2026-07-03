@@ -8,7 +8,12 @@ export const Route = createFileRoute("/results")({
     meta: [
       { title: "Results — DǝǝPeaçeAɠency" },
       { name: "description", content: "Real metrics from real eCommerce brands: revenue lift, ROAS, conversion rate, Core Web Vitals." },
+      { property: "og:title", content: "Results — DǝǝPeaçeAɠency" },
+      { property: "og:description", content: "Real metrics from real eCommerce brands: revenue lift, ROAS, conversion rate, Core Web Vitals." },
+      { property: "og:url", content: "https://peacedigitalagency.lovable.app/results" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/results" }],
   }),
   component: Results,
 });

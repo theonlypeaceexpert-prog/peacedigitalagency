@@ -9,7 +9,12 @@ export const Route = createFileRoute("/reviews")({
     meta: [
       { title: "Reviews & Testimonials — DǝǝPeaçeAɠency" },
       { name: "description", content: "What founders and CMOs say about working with DǝǝPeaçeAɠency." },
+      { property: "og:title", content: "Reviews & Testimonials — DǝǝPeaçeAɠency" },
+      { property: "og:description", content: "What founders and CMOs say about working with DǝǝPeaçeAɠency." },
+      { property: "og:url", content: "https://peacedigitalagency.lovable.app/reviews" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/reviews" }],
   }),
   component: Reviews,
 });

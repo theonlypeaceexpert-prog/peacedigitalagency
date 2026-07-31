@@ -22,9 +22,11 @@ export function SitePreview({ url, title, duration = 22 }: Props) {
   const frameRef = useRef<HTMLDivElement | null>(null);
 
   const encoded = encodeURIComponent(url);
+  // Ordered by reliability: mShots now rejects hot-linked requests (403),
+  // so Microlink full-page is primary with thum.io full-page as fallback.
   const sources = [
-    `https://s.wordpress.com/mshots/v1/${encoded}?w=1200&h=3200`,
     `https://api.microlink.io/?url=${encoded}&screenshot=true&meta=false&embed=screenshot.url&screenshot.fullPage=true&viewport.width=1280`,
+    `https://image.thum.io/get/width/1200/fullpage/noanimate/${url}`,
     `https://image.thum.io/get/width/1200/png/noanimate/${url}`,
   ];
 

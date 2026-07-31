@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Mail, MessageCircle } from "lucide-react";
 import logoAsset from "@/assets/deepeace-logo-transparent.png.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 
 export function Footer() {
   return (
@@ -9,7 +10,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <img
-              src={logoAsset.url}
+              src={assetUrl(logoAsset.url)}
               alt="DeePeace Agency"
               loading="lazy"
               decoding="async"

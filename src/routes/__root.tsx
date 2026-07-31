@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import faviconAsset from "../assets/favicon.png.asset.json";
+import { assetUrl } from "../lib/asset-url";
 import logoAsset from "../assets/deepeace-logo.jpeg.asset.json";
 
 function NotFoundComponent() {
@@ -85,16 +86,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Elite digital agency specializing in Shopify, AI automation, performance marketing and conversion-led design for ambitious eCommerce brands." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:image", content: logoAsset.url },
-      { name: "twitter:image", content: logoAsset.url },
+      { property: "og:image", content: assetUrl(logoAsset.url) },
+      { name: "twitter:image", content: assetUrl(logoAsset.url) },
       { name: "theme-color", content: "#F8F8F6" },
       { name: "twitter:title", content: "DǝǝPeaçeAɠency — Premium Digital Growth for eCommerce Brands" },
       { name: "twitter:description", content: "Elite digital agency specializing in Shopify, AI automation, performance marketing and conversion-led design for ambitious eCommerce brands." },
       { property: "og:site_name", content: "DǝǝPeaçeAɠency" },
     ],
     links: [
-      { rel: "icon", type: "image/png", href: faviconAsset.url },
-      { rel: "apple-touch-icon", href: faviconAsset.url },
+      { rel: "icon", type: "image/png", href: assetUrl(faviconAsset.url) },
+      { rel: "apple-touch-icon", href: assetUrl(faviconAsset.url) },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" },
@@ -111,7 +112,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               "@id": "https://peacedigitalagency.lovable.app/#organization",
               name: "DǝǝPeaçeAɠency",
               url: "https://peacedigitalagency.lovable.app",
-              logo: `https://peacedigitalagency.lovable.app${logoAsset.url}`,
+              logo: assetUrl(logoAsset.url),
               description: "Premium digital growth agency for ambitious eCommerce brands.",
               foundingDate: "2021",
             },

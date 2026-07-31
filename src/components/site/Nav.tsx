@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import logoAsset from "@/assets/deepeace-logo-transparent.png.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 
 const links = [
   { to: "/", label: "Home" },
@@ -44,7 +45,7 @@ export function Nav() {
         >
           <Link to="/" className="flex items-center gap-2 group" aria-label="DeePeace Agency — Home">
             <motion.img
-              src={logoAsset.url}
+              src={assetUrl(logoAsset.url)}
               alt="DeePeace Agency"
               initial={{ opacity: 0, scale: 0.85, y: -4 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}

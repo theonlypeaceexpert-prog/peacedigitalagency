@@ -109,7 +109,7 @@ export default function Contact() {
           </p>
 
           <div className="mt-10 space-y-3">
-            <Channel icon={<MessageCircle size={18} />} label="WhatsApp" value="+44 7828 747179" href="https://wa.me/447828747179" />
+            <Channel icon={<MessageCircle size={18} />} label="WhatsApp" value="+234 704 785 8283" href="https://wa.me/2347047858283" />
             <Channel icon={<Mail size={18} />} label="Email" value="theonlypeaceexpert@gmail.com" href="mailto:theonlypeaceexpert@gmail.com" />
             <Channel icon={<Instagram size={18} />} label="Instagram" value="@deepeaceagency" href="https://www.instagram.com/deepeaceagency" />
             <Channel icon={<Music2 size={18} />} label="TikTok" value="@dee.peace0" href="https://www.tiktok.com/@dee.peace0" />

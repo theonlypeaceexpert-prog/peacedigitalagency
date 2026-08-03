@@ -74,7 +74,7 @@ export function Nav() {
               to="/contact"
               className="rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-opacity"
             >
-              Book a Call
+              HIRE ME
             </Link>
           </div>
 

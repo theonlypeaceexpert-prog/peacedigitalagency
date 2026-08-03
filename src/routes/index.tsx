@@ -94,7 +94,7 @@ function Home() {
               <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition" />
             </Link>
             <Link to="/contact" className="inline-flex items-center gap-2 rounded-full glass px-7 py-4 font-medium hover:bg-secondary/40 transition">
-              Book a Strategy Call
+              HIRE ME
             </Link>
           </motion.div>
 

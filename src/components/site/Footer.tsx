@@ -23,7 +23,7 @@ export function Footer() {
               DǝǝPeaçeAɠency — a premium digital growth partner for ambitious eCommerce brands worldwide.
             </p>
             <div className="mt-6 flex gap-3">
-              <a href="https://wa.me/447828747179" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="WhatsApp">
+              <a href="https://wa.me/2347047858283" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="WhatsApp">
                 <MessageCircle size={18} />
               </a>
               <a href="https://www.instagram.com/deepeaceagency" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="Instagram">
@@ -53,7 +53,7 @@ export function Footer() {
             <h4 className="text-sm font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>Theonlypeaceexpert@gmail.com</li>
-              <li>+44 7828 747179</li>
+              <li>+234 704 785 8283</li>
               <li>Worldwide · Remote</li>
             </ul>
           </div>

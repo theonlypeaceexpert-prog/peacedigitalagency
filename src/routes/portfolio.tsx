@@ -52,7 +52,7 @@ export default function Portfolio() {
       <section className="mx-auto max-w-7xl px-6 pb-24">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((p, i) => (
-            <Card key={p.name} p={p} delay={(i % 4) * 0.08} />
+            <Card key={p.name} p={p} delay={(i % 4) * 0.08} priority={i < 3} />
           ))}
         </div>
       </section>
@@ -60,7 +60,7 @@ export default function Portfolio() {
   );
 }
 
-function Card({ p, delay }: { p: typeof projects[number]; delay: number }) {
+function Card({ p, delay, priority }: { p: typeof projects[number]; delay: number; priority?: boolean }) {
   return (
     <motion.a
       href={p.url}
@@ -70,16 +70,24 @@ function Card({ p, delay }: { p: typeof projects[number]; delay: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ delay, duration: 0.6 }}
-      className="group block rounded-3xl overflow-hidden bg-card border border-border hover:border-accent/50 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.15)]"
+      className="group block rounded-3xl overflow-hidden glass border border-border/60 hover:border-accent/50 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.15)]"
     >
       <div className="aspect-[16/10] relative">
-        <SitePreview url={p.url} title={p.name} />
+        <SitePreview url={p.url} title={p.name} shot={"shot" in p ? (p as { shot?: string }).shot : undefined} priority={priority} />
       </div>
       <div className="p-6 sm:p-7">
         <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
+          <div className="min-w-0 flex items-center gap-3">
+            <img
+              src={`https://www.google.com/s2/favicons?domain=${new URL(p.url).hostname}&sz=64`}
+              alt={`${p.name} logo`}
+              loading="lazy"
+              className="h-9 w-9 rounded-xl bg-secondary object-contain p-1.5 shrink-0"
+            />
+            <div className="min-w-0">
             <h3 className="font-display text-2xl font-semibold tracking-tight">{p.name}</h3>
-            <p className="text-xs text-muted-foreground mt-1">{p.industry}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{p.industry}</p>
+            </div>
           </div>
           <span
             className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-2 text-xs font-medium group-hover:bg-accent group-hover:text-accent-foreground transition-colors"

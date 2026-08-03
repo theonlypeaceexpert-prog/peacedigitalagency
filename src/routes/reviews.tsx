@@ -40,6 +40,11 @@ export default function Reviews() {
         </h1>
       </section>
 
+
+      <section className="mx-auto max-w-7xl px-6 pb-4">
+        <RatingSummary />
+      </section>
+
       <section className="mx-auto max-w-4xl px-6 pb-20">
         <motion.div
           key={i}
@@ -104,5 +109,72 @@ export default function Reviews() {
         </div>
       </section>
     </Layout>
+  );
+}
+
+const distribution = [
+  { stars: 5, count: 968 },
+  { stars: 4, count: 44 },
+  { stars: 3, count: 8 },
+  { stars: 2, count: 3 },
+  { stars: 1, count: 1 },
+];
+
+function RatingSummary() {
+  const total = distribution.reduce((a, d) => a + d.count, 0);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6 }}
+      className="rounded-[2rem] border border-accent/20 bg-accent/5 backdrop-blur-xl shadow-[0_24px_60px_-30px_hsl(var(--accent)/0.45)] p-8 sm:p-12 grid gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] md:gap-16 items-center"
+    >
+      <div className="text-center md:text-left">
+        <p className="font-display text-7xl sm:text-8xl font-bold tracking-tight leading-none">4.9</p>
+        <div className="mt-4 flex justify-center md:justify-start gap-1.5">
+          {Array.from({ length: 5 }).map((_, k) => (
+            <motion.span
+              key={k}
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 + k * 0.07, type: "spring", stiffness: 260 }}
+            >
+              <Star size={24} className="fill-accent text-accent" />
+            </motion.span>
+          ))}
+        </div>
+        <p className="mt-5 text-lg font-semibold">{total.toLocaleString()} reviews</p>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Verified feedback from founders &amp; growth teams worldwide.
+        </p>
+      </div>
+
+      <div className="space-y-3.5">
+        {distribution.map((d, i) => {
+          const pct = (d.count / total) * 100;
+          return (
+            <div key={d.stars} className="flex items-center gap-3 sm:gap-4">
+              <span className="flex items-center gap-1 w-14 sm:w-16 shrink-0 text-sm font-medium tabular-nums">
+                {d.stars} <Star size={13} className="fill-accent text-accent" />
+              </span>
+              <div className="h-2.5 flex-1 rounded-full bg-foreground/10 overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${pct}%` }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 1.1, delay: 0.15 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="h-full rounded-full bg-accent"
+                />
+              </div>
+              <span className="w-12 text-right text-sm text-muted-foreground tabular-nums">
+                {d.count}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </motion.div>
   );
 }

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Mail, MessageCircle } from "lucide-react";
+import { Instagram, Mail, MessageCircle, Linkedin } from "lucide-react";
 import logoAsset from "@/assets/deepeace-logo-transparent.png.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 
@@ -25,6 +25,9 @@ export function Footer() {
             <div className="mt-6 flex gap-3">
               <a href="https://wa.me/2347047858283" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="WhatsApp">
                 <MessageCircle size={18} />
+              </a>
+              <a href="https://www.linkedin.com/in/muhammad-olaitan-teslim-81423b427" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="LinkedIn">
+                <Linkedin size={18} />
               </a>
               <a href="https://www.instagram.com/deepeaceagency" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="Instagram">
                 <Instagram size={18} />

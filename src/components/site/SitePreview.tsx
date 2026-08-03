@@ -3,18 +3,22 @@ import { useEffect, useRef, useState } from "react";
 interface Props {
   url: string;
   title: string;
+  /** local pre-captured full-page screenshot, e.g. "/screenshots/boody.jpg" */
+  shot?: string;
   /** seconds per full scroll cycle */
   duration?: number;
+  /** load eagerly (first cards) */
+  priority?: boolean;
 }
 
 /**
- * Realistic desktop browser mockup with a full-page screenshot that
- * auto-scrolls top→bottom in a continuous loop and pauses on hover.
+ * Realistic desktop browser mockup showing a full-page homepage screenshot
+ * that auto-scrolls top → bottom in a continuous loop and pauses on hover.
  *
- * Uses WordPress mShots (free, full-page, no key) with fallbacks so cards
- * never stay blank.
+ * Primary source is a locally-hosted pre-captured screenshot (never breaks,
+ * works on any host). Microlink is used only as a fallback.
  */
-export function SitePreview({ url, title, duration = 22 }: Props) {
+export function SitePreview({ url, title, shot, duration = 22, priority = false }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [srcIndex, setSrcIndex] = useState(0);
   const [distance, setDistance] = useState(0);
@@ -22,12 +26,10 @@ export function SitePreview({ url, title, duration = 22 }: Props) {
   const frameRef = useRef<HTMLDivElement | null>(null);
 
   const encoded = encodeURIComponent(url);
-  // Ordered by reliability: mShots now rejects hot-linked requests (403),
-  // so Microlink full-page is primary with thum.io full-page as fallback.
   const sources = [
+    ...(shot ? [shot] : []),
     `https://api.microlink.io/?url=${encoded}&screenshot=true&meta=false&embed=screenshot.url&screenshot.fullPage=true&viewport.width=1280`,
     `https://image.thum.io/get/width/1200/fullpage/noanimate/${url}`,
-    `https://image.thum.io/get/width/1200/png/noanimate/${url}`,
   ];
 
   useEffect(() => {
@@ -47,7 +49,7 @@ export function SitePreview({ url, title, duration = 22 }: Props) {
     return () => ro.disconnect();
   }, [loaded, srcIndex]);
 
-  const animName = `scroll-${Math.round(duration)}`;
+  const animName = `scroll-${Math.round(duration)}-${Math.round(distance)}`;
 
   return (
     <div
@@ -77,8 +79,8 @@ export function SitePreview({ url, title, duration = 22 }: Props) {
           ref={imgRef}
           key={srcIndex}
           src={sources[srcIndex]}
-          alt={`${title} homepage`}
-          loading="lazy"
+          alt={`${title} homepage screenshot`}
+          loading={priority ? "eager" : "lazy"}
           decoding="async"
           onLoad={() => setLoaded(true)}
           onError={() => {
@@ -92,22 +94,24 @@ export function SitePreview({ url, title, duration = 22 }: Props) {
           className="w-full block will-change-transform group-hover/preview:[animation-play-state:paused]"
           style={{
             opacity: loaded ? 1 : 0,
-            transition: "opacity 0.5s ease",
+            transition: "opacity 0.6s ease",
             animation:
               loaded && distance > 0
-                ? `${animName} ${duration}s ease-in-out infinite`
+                ? `${animName} ${duration}s cubic-bezier(0.45,0,0.55,1) infinite`
                 : undefined,
           }}
         />
       </div>
 
-      <style>{`
-        @keyframes ${animName} {
-          0%, 6%   { transform: translateY(0); }
-          50%      { transform: translateY(-${distance}px); }
-          94%, 100%{ transform: translateY(0); }
-        }
-      `}</style>
+      {distance > 0 && (
+        <style>{`
+          @keyframes ${animName} {
+            0%, 6%   { transform: translate3d(0,0,0); }
+            50%      { transform: translate3d(0,-${distance}px,0); }
+            94%, 100%{ transform: translate3d(0,0,0); }
+          }
+        `}</style>
+      )}
     </div>
   );
 }

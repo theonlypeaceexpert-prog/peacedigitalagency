@@ -8,7 +8,7 @@ const KB: { q: RegExp; a: string }[] = [
   { q: /service|offer|do you do/i, a: "We offer Website & Shopify development, SEO/GEO, AI automation, UGC & AI video, and full-stack marketing (Meta, TikTok, Pinterest, Klaviyo, Mailchimp). Visit our Services page for the full list." },
   { q: /shopify|project|portfolio|work/i, a: "We've delivered premium Shopify experiences for FunnyFuzzy, Boody, Ryderwear, Jamie Kay, Slick Gorilla and more. Check the Portfolio page for live previews." },
   { q: /platform|tech|stack/i, a: "We specialize in Shopify, WooCommerce, Wix, GoDaddy, plus Klaviyo, Mailchimp, Meta, TikTok, Pinterest and Google ecosystems." },
-  { q: /contact|reach|email|whatsapp|phone/i, a: "Email Theonlypeaceexpert@gmail.com or WhatsApp +44 7828 747179. The Contact page has a full project brief form." },
+  { q: /contact|reach|email|whatsapp|phone/i, a: "Email Theonlypeaceexpert@gmail.com or WhatsApp +234 704 785 8283. The Contact page has a full project brief form." },
   { q: /different|why|unique|special/i, a: "We blend AI-powered automation with premium creative & conversion engineering — every build is bespoke, performance-first, and tuned to scale revenue, not just look pretty." },
   { q: /price|cost|budget/i, a: "Projects are scoped to your goals. Share your budget in the Contact form and we'll propose a phased roadmap within 24h." },
 ];

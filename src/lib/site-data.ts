@@ -23,17 +23,17 @@ export const services = [
 ] as const;
 
 export const projects = [
-  { name: "FunnyFuzzy", url: "https://funnyfuzzy.com/", industry: "Pet Lifestyle", services: ["Shopify", "CRO", "Email"] },
-  { name: "Boody", url: "https://boody.com/", industry: "Sustainable Apparel", services: ["Shopify Plus", "Performance"] },
-  { name: "Maisonette", url: "https://www.maisonette.com/", industry: "Kids' Luxury", services: ["UX", "SEO"] },
-  { name: "Clothes Mentor", url: "https://clothesmentor.com/", industry: "Resale Fashion", services: ["Web Dev", "SEO"] },
-  { name: "Jamie Kay", url: "https://jamiekay.com.au/", industry: "Baby & Kids", services: ["Shopify", "Klaviyo"] },
-  { name: "Baby Noomie", url: "https://babynoomie.com/", industry: "Baby Apparel", services: ["Shopify", "Ads"] },
+  { shot: "/screenshots/funnyfuzzy.jpg", name: "FunnyFuzzy", url: "https://funnyfuzzy.com/", industry: "Pet Lifestyle", services: ["Shopify", "CRO", "Email"] },
+  { shot: "/screenshots/boody.jpg", name: "Boody", url: "https://boody.com/", industry: "Sustainable Apparel", services: ["Shopify Plus", "Performance"] },
+  { shot: "/screenshots/maisonette.jpg", name: "Maisonette", url: "https://www.maisonette.com/", industry: "Kids' Luxury", services: ["UX", "SEO"] },
+  { shot: "/screenshots/clothesmentor.jpg", name: "Clothes Mentor", url: "https://clothesmentor.com/", industry: "Resale Fashion", services: ["Web Dev", "SEO"] },
+  { shot: "/screenshots/jamiekay.jpg", name: "Jamie Kay", url: "https://jamiekay.com.au/", industry: "Baby & Kids", services: ["Shopify", "Klaviyo"] },
+  { shot: "/screenshots/babynoomie.jpg", name: "Baby Noomie", url: "https://babynoomie.com/", industry: "Baby Apparel", services: ["Shopify", "Ads"] },
   { name: "Ryderwear", url: "https://www.ryderwear.com/", industry: "Performance Apparel", services: ["Shopify Plus", "CRO"] },
-  { name: "Dallianse", url: "https://dallianse.com/en-gb", industry: "Luxury Fashion", services: ["Shopify", "Design"] },
-  { name: "Slick Gorilla", url: "https://slickgorilla.co.uk/", industry: "Men's Grooming", services: ["Shopify", "Meta Ads"] },
-  { name: "Eloria Beauty", url: "https://eloriabeauty.ca/", industry: "Beauty", services: ["Shopify", "Klaviyo"] },
-  { name: "PEKS Shop", url: "https://peksshop.de/", industry: "Lifestyle", services: ["Shopify", "SEO"] },
+  { shot: "/screenshots/dallianse.jpg", name: "Dallianse", url: "https://dallianse.com/en-gb", industry: "Luxury Fashion", services: ["Shopify", "Design"] },
+  { shot: "/screenshots/slickgorilla.jpg", name: "Slick Gorilla", url: "https://slickgorilla.co.uk/", industry: "Men's Grooming", services: ["Shopify", "Meta Ads"] },
+  { shot: "/screenshots/eloriabeauty.jpg", name: "Eloria Beauty", url: "https://eloriabeauty.ca/", industry: "Beauty", services: ["Shopify", "Klaviyo"] },
+  { shot: "/screenshots/peksshop.jpg", name: "PEKS Shop", url: "https://peksshop.de/", industry: "Lifestyle", services: ["Shopify", "SEO"] },
 ];
 
 export const platforms = [

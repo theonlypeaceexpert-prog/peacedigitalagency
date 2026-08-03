@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { Layout } from "@/components/site/Layout";
-import { Mail, MessageCircle, Instagram, Music2, Clock, MapPin, Check, Loader2 } from "lucide-react";
+import { Mail, MessageCircle, Instagram, Music2, Linkedin, Clock, MapPin, Check, Loader2 } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
 import { z } from "zod";
 
@@ -111,6 +111,7 @@ export default function Contact() {
           <div className="mt-10 space-y-3">
             <Channel icon={<MessageCircle size={18} />} label="WhatsApp" value="+234 704 785 8283" href="https://wa.me/2347047858283" />
             <Channel icon={<Mail size={18} />} label="Email" value="theonlypeaceexpert@gmail.com" href="mailto:theonlypeaceexpert@gmail.com" />
+            <Channel icon={<Linkedin size={18} />} label="LinkedIn" value="Muhammad Olaitan Teslim" href="https://www.linkedin.com/in/muhammad-olaitan-teslim-81423b427" />
             <Channel icon={<Instagram size={18} />} label="Instagram" value="@deepeaceagency" href="https://www.instagram.com/deepeaceagency" />
             <Channel icon={<Music2 size={18} />} label="TikTok" value="@dee.peace0" href="https://www.tiktok.com/@dee.peace0" />
           </div>

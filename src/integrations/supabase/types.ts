@@ -14,16 +14,166 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_leads: {
+        Row: {
+          conversation_summary: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          phone: string | null
+          question: string
+          reason: string | null
+          website: string | null
+        }
+        Insert: {
+          conversation_summary?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          phone?: string | null
+          question: string
+          reason?: string | null
+          website?: string | null
+        }
+        Update: {
+          conversation_summary?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          question?: string
+          reason?: string | null
+          website?: string | null
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          avatar_url: string | null
+          body: string
+          country: string
+          country_code: string
+          created_at: string
+          duration: string
+          email: string | null
+          id: string
+          is_sample: boolean
+          name: string
+          price: string
+          rating: number
+          repeat_client: boolean
+          service: string
+          status: Database["public"]["Enums"]["review_status"]
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          body: string
+          country?: string
+          country_code?: string
+          created_at?: string
+          duration?: string
+          email?: string | null
+          id?: string
+          is_sample?: boolean
+          name: string
+          price?: string
+          rating: number
+          repeat_client?: boolean
+          service?: string
+          status?: Database["public"]["Enums"]["review_status"]
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          body?: string
+          country?: string
+          country_code?: string
+          created_at?: string
+          duration?: string
+          email?: string | null
+          id?: string
+          is_sample?: boolean
+          name?: string
+          price?: string
+          rating?: number
+          repeat_client?: boolean
+          service?: string
+          status?: Database["public"]["Enums"]["review_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_public_reviews: {
+        Args: { _limit?: number; _offset?: number }
+        Returns: {
+          avatar_url: string
+          body: string
+          country: string
+          country_code: string
+          created_at: string
+          duration: string
+          id: string
+          is_sample: boolean
+          name: string
+          price: string
+          rating: number
+          repeat_client: boolean
+          service: string
+        }[]
+      }
+      get_review_stats: {
+        Args: never
+        Returns: {
+          average: number
+          s1: number
+          s2: number
+          s3: number
+          s4: number
+          s5: number
+          total: number
+        }[]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
+      review_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +300,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+      review_status: ["pending", "approved", "rejected"],
+    },
   },
 } as const

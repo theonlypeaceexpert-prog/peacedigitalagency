@@ -5,28 +5,28 @@ import { projects } from "@/lib/site-data";
 
 /**
  * SINGLE SOURCE OF TRUTH for every number shown on the Results page and the
- * home-page stat strip. Edit values here only — nothing is hard-coded elsewhere.
- * Only use figures you can substantiate from real project work.
+ * home-page stat strip. Edit values here only.
+ * Only use figures that can be substantiated from real project work.
  */
 
 export const headlineStats = [
-  { value: `${projects.length}`, suffix: "+", numeric: projects.length, label: "eCommerce growth projects" },
-  { value: "20", suffix: "+", numeric: 20, label: "Specialist services delivered" },
-  { value: "9", suffix: "", numeric: 9, label: "Platforms & channels mastered" },
-  { value: "100", suffix: "%", numeric: 100, label: "Performance-focused delivery" },
-] as const;
+  { numeric: projects.length, suffix: "+", label: "eCommerce growth projects" },
+  { numeric: 20, suffix: "+", label: "Specialist services delivered" },
+  { numeric: 12, suffix: "", label: "Platforms & channels mastered" },
+  { numeric: 100, suffix: "%", label: "Performance-focused delivery" },
+];
 
 /** Short strip used on the home page. */
 export const stats = [
   { value: `${projects.length}+`, label: "Growth Projects" },
   { value: "20+", label: "Services Delivered" },
   { value: "Performance-Focused", label: "Growth Approach" },
-  { value: "9", label: "Platforms Mastered" },
+  { value: "12", label: "Platforms Mastered" },
 ];
 
 /**
- * Benchmarks describe the engineering standard we build to — they are targets
- * measured on our own builds, not client revenue claims.
+ * Benchmarks describe the build standard we hold every project to.
+ * They are delivery standards, not client revenue claims.
  */
 export const benchmarks = [
   { label: "Core Web Vitals pass rate on new builds", value: 100 },
@@ -34,10 +34,6 @@ export const benchmarks = [
   { label: "Projects shipped with SEO fundamentals in place", value: 100 },
   { label: "Projects shipped with email/automation foundations", value: 80 },
 ];
-
-export const buildStandards = [
-  ["90+", "Lighthouse target", "Performance budget every build is held to" },
-] as unknown as never; // placeholder removed below
 
 export const standards = [
   { value: "90+", title: "Lighthouse target", desc: "Performance budget every build is held to" },

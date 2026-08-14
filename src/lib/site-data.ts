@@ -41,9 +41,10 @@ export const platforms = [
   "Instagram", "TikTok", "Pinterest", "Klaviyo", "Hostinger", "Mailchimp",
 ];
 
+// Only substantiated figures — no revenue or ROAS claims.
 export const stats = [
-  { value: "100+", label: "Projects Delivered" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "$50M+", label: "Revenue Influenced" },
-  { value: "4.2×", label: "Avg ROAS Lift" },
+  { value: `${projects.length}+`, label: "Growth Projects" },
+  { value: "20+", label: "Services Delivered" },
+  { value: "Performance-Focused", label: "Growth Approach" },
+  { value: "12", label: "Platforms Mastered" },
 ];

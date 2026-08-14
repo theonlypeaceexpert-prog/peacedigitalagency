@@ -78,9 +78,8 @@ export function WriteReviewDialog({ onSubmitted }: { onSubmitted?: () => void })
         const { error: upErr } = await supabase.storage
           .from("review-avatars")
           .upload(path, photo, { cacheControl: "3600", upsert: false });
-        if (!upErr) {
-          avatarUrl = supabase.storage.from("review-avatars").getPublicUrl(path).data.publicUrl;
-        }
+        // Bucket is private — store the object path; the reviews page signs it on read.
+        if (!upErr) avatarUrl = path;
       }
 
       const country = COUNTRIES.find((c) => c.name === form.country);

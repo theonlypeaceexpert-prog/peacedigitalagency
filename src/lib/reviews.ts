@@ -34,7 +34,26 @@ export async function fetchPublicReviews(offset: number, limit = PAGE_SIZE) {
     _offset: offset,
   });
   if (error) throw error;
-  return (data ?? []) as PublicReview[];
+  return withAvatarUrls((data ?? []) as PublicReview[]);
+}
+
+/**
+ * Reviewer photos live in a private bucket, so stored values are object paths.
+ * Swap them for short-lived signed URLs before rendering.
+ */
+async function withAvatarUrls(rows: PublicReview[]) {
+  const paths = rows
+    .map((r) => r.avatar_url)
+    .filter((p): p is string => Boolean(p) && !/^https?:\/\//i.test(p!));
+  if (paths.length === 0) return rows;
+
+  const { data } = await supabase.storage.from("review-avatars").createSignedUrls(paths, 3600);
+  const map = new Map((data ?? []).map((d) => [d.path ?? "", d.signedUrl]));
+  return rows.map((r) =>
+    r.avatar_url && map.get(r.avatar_url)
+      ? { ...r, avatar_url: map.get(r.avatar_url) as string }
+      : r,
+  );
 }
 
 export async function fetchReviewStats(): Promise<ReviewStats> {

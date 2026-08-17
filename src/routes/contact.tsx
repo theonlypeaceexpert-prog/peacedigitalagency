@@ -146,13 +146,13 @@ export default function Contact() {
                   initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
                   className="font-display text-3xl font-bold"
                 >
-                  Message received.
+                  Message Sent Successfully
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
                   className="mt-3 text-muted-foreground max-w-sm"
                 >
-                  We'll reply to your inbox within 24 hours with a tailored growth plan.
+                  Thank you for reaching out to DǝǝPeaçeAɠency. Your message has been received and I'll get back to you as soon as possible.
                 </motion.p>
                 <motion.button
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
@@ -189,7 +189,7 @@ export default function Contact() {
 
 
                 {status === "error" && (
-                  <p className="text-sm text-destructive">Send failed: {errorMsg}. Try again or email us directly.</p>
+                  <p className="text-sm text-destructive">{errorMsg} Please try again or email theonlypeaceexpert@gmail.com directly.</p>
                 )}
 
                 <button

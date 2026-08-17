@@ -16,6 +16,8 @@ export type Database = {
     Tables: {
       ai_leads: {
         Row: {
+          budget: string | null
+          company: string | null
           conversation_summary: string | null
           created_at: string
           email: string
@@ -24,9 +26,14 @@ export type Database = {
           phone: string | null
           question: string
           reason: string | null
+          service: string | null
+          source: string
+          status: Database["public"]["Enums"]["lead_status"]
           website: string | null
         }
         Insert: {
+          budget?: string | null
+          company?: string | null
           conversation_summary?: string | null
           created_at?: string
           email: string
@@ -35,9 +42,14 @@ export type Database = {
           phone?: string | null
           question: string
           reason?: string | null
+          service?: string | null
+          source?: string
+          status?: Database["public"]["Enums"]["lead_status"]
           website?: string | null
         }
         Update: {
+          budget?: string | null
+          company?: string | null
           conversation_summary?: string | null
           created_at?: string
           email?: string
@@ -46,6 +58,9 @@ export type Database = {
           phone?: string | null
           question?: string
           reason?: string | null
+          service?: string | null
+          source?: string
+          status?: Database["public"]["Enums"]["lead_status"]
           website?: string | null
         }
         Relationships: []
@@ -173,6 +188,12 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
+      lead_status:
+        | "new"
+        | "contacted"
+        | "in_progress"
+        | "completed"
+        | "archived"
       review_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
@@ -302,6 +323,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
+      lead_status: ["new", "contacted", "in_progress", "completed", "archived"],
       review_status: ["pending", "approved", "rejected"],
     },
   },

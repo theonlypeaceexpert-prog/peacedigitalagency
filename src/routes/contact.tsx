@@ -39,8 +39,6 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/theonlypeaceexpert@gmail.com";
-
 const schema = z.object({
   name: z.string().trim().min(2, "Name is too short").max(80),
   email: z.string().trim().email("Invalid email").max(160),
@@ -56,6 +54,7 @@ export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [errorMsg, setErrorMsg] = useState("");
+  const send = useServerFn(submitContact);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -74,19 +73,12 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      const payload = {
-        ...parsed.data,
-        _subject: `New project inquiry from ${parsed.data.name}`,
-        _template: "table",
-        _captcha: "true",
-        "Submitted at": new Date().toLocaleString("en-GB", { timeZone: "UTC", timeZoneName: "short" }),
-      };
-      const res = await fetch(FORMSUBMIT_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const res = await send({ data: parsed.data });
+      if (!res.ok) {
+        setStatus("error");
+        setErrorMsg(res.error ?? "Something went wrong");
+        return;
+      }
       setStatus("sent");
       form.reset();
     } catch (err) {

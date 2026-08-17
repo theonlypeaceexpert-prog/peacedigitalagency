@@ -3,7 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Layout } from "@/components/site/Layout";
 import { Mail, MessageCircle, Instagram, Music2, Linkedin, Clock, MapPin, Check, Loader2 } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { submitContact } from "@/lib/ai.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({

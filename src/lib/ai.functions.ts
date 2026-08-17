@@ -84,6 +84,8 @@ export const submitEscalation = createServerFn({ method: "POST" })
       question: data.question,
       conversation_summary: data.conversationSummary || null,
       reason: data.reason || "Requested personal assistance",
+      source: "ai",
+      status: "new",
     });
     if (error) {
       console.error(error);

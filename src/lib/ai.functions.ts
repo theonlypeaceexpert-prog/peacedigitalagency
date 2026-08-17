@@ -84,6 +84,8 @@ export const submitEscalation = createServerFn({ method: "POST" })
       question: data.question,
       conversation_summary: data.conversationSummary || null,
       reason: data.reason || "Requested personal assistance",
+      source: "ai",
+      status: "new",
     });
     if (error) {
       console.error(error);
@@ -110,6 +112,75 @@ export const submitEscalation = createServerFn({ method: "POST" })
       });
     } catch (mailError) {
       console.error("lead email notification failed", mailError);
+    }
+
+    return { ok: true, error: null as string | null };
+  });
+
+const contactSchema = z.object({
+  name: z.string().trim().min(2).max(80),
+  email: z.string().trim().email().max(160),
+  phone: z.string().trim().max(40).optional().or(z.literal("")),
+  company: z.string().trim().max(120).optional().or(z.literal("")),
+  service: z.string().trim().min(1).max(120),
+  budget: z.string().trim().min(1).max(60),
+  details: z.string().trim().min(20).max(4000),
+  website: z.string().max(0).optional(), // honeypot
+});
+
+export const submitContact = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => contactSchema.parse(data))
+  .handler(async ({ data }) => {
+    if (data.website) return { ok: true, error: null as string | null };
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin.from("ai_leads").insert({
+      name: data.name,
+      email: data.email,
+      phone: data.phone || null,
+      company: data.company || null,
+      service: data.service,
+      budget: data.budget,
+      question: data.details,
+      reason: "Contact page inquiry",
+      source: "contact",
+      status: "new",
+    });
+    if (error) {
+      console.error(error);
+      return { ok: false, error: "We could not save your message. Please try again." };
+    }
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/theonlypeaceexpert@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `New DǝǝPeaçeAɠency Inquiry — ${data.name}`,
+          _template: "table",
+          Name: data.name,
+          Email: data.email,
+          Phone: data.phone || "—",
+          Company: data.company || "—",
+          Service: data.service,
+          Budget: data.budget,
+          "Project Details": data.details,
+          "Date / time (UTC)": new Date().toISOString(),
+        }),
+      });
+      if (!res.ok) {
+        console.error("contact email failed", res.status, await res.text());
+        return {
+          ok: false,
+          error: "Your message was saved but the email notification failed. Please retry or email theonlypeaceexpert@gmail.com directly.",
+        };
+      }
+    } catch (mailError) {
+      console.error("contact email failed", mailError);
+      return {
+        ok: false,
+        error: "The email service is unreachable right now. Please retry in a moment.",
+      };
     }
 
     return { ok: true, error: null as string | null };

@@ -26,7 +26,7 @@ export function Footer() {
               <a href="https://wa.me/2347047858283" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="WhatsApp">
                 <MessageCircle size={18} />
               </a>
-              <a href="https://www.linkedin.com/in/muhammad-olaitan-teslim-81423b427" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/deepeace-agency-988556426" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="LinkedIn">
                 <Linkedin size={18} />
               </a>
               <a href="https://www.instagram.com/deepeaceagency" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="Instagram">

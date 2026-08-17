@@ -12,7 +12,7 @@ optimization, AI automation and performance marketing.
 CONTACT
 Email: theonlypeaceexpert@gmail.com
 WhatsApp: +234 704 785 8283 (https://wa.me/2347047858283)
-LinkedIn: https://www.linkedin.com/in/muhammad-olaitan-teslim-81423b427
+LinkedIn: https://www.linkedin.com/in/deepeace-agency-988556426
 Contact page: /contact  ·  Reviews: /reviews  ·  Portfolio: /portfolio  ·  Results: /results  ·  UGC: /ugc
 
 SERVICES

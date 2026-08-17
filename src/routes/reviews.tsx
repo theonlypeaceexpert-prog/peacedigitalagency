@@ -5,6 +5,7 @@ import { Star, Loader2 } from "lucide-react";
 import { Layout } from "@/components/site/Layout";
 import { ReviewCard } from "@/components/site/ReviewCard";
 import { WriteReviewDialog } from "@/components/site/WriteReviewDialog";
+import { FeaturedClientReview } from "@/components/site/FeaturedClientReview";
 import {
   PAGE_SIZE,
   fetchPublicReviews,
@@ -84,6 +85,8 @@ export default function Reviews() {
       <section className="mx-auto max-w-7xl px-6 pb-10">
         <RatingSummary stats={stats} loading={loading} />
       </section>
+
+      <FeaturedClientReview />
 
       <section className="mx-auto max-w-7xl px-6 pb-24">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">

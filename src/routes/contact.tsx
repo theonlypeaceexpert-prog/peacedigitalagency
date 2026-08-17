@@ -3,7 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Layout } from "@/components/site/Layout";
 import { Mail, MessageCircle, Instagram, Music2, Linkedin, Clock, MapPin, Check, Loader2 } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { submitContact } from "@/lib/ai.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -39,8 +41,6 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/theonlypeaceexpert@gmail.com";
-
 const schema = z.object({
   name: z.string().trim().min(2, "Name is too short").max(80),
   email: z.string().trim().email("Invalid email").max(160),
@@ -56,6 +56,7 @@ export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [errorMsg, setErrorMsg] = useState("");
+  const send = useServerFn(submitContact);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -74,19 +75,12 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      const payload = {
-        ...parsed.data,
-        _subject: `New project inquiry from ${parsed.data.name}`,
-        _template: "table",
-        _captcha: "true",
-        "Submitted at": new Date().toLocaleString("en-GB", { timeZone: "UTC", timeZoneName: "short" }),
-      };
-      const res = await fetch(FORMSUBMIT_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const res = await send({ data: parsed.data });
+      if (!res.ok) {
+        setStatus("error");
+        setErrorMsg(res.error ?? "Something went wrong");
+        return;
+      }
       setStatus("sent");
       form.reset();
     } catch (err) {
@@ -111,7 +105,7 @@ export default function Contact() {
           <div className="mt-10 space-y-3">
             <Channel icon={<MessageCircle size={18} />} label="WhatsApp" value="+234 704 785 8283" href="https://wa.me/2347047858283" />
             <Channel icon={<Mail size={18} />} label="Email" value="theonlypeaceexpert@gmail.com" href="mailto:theonlypeaceexpert@gmail.com" />
-            <Channel icon={<Linkedin size={18} />} label="LinkedIn" value="Muhammad Olaitan Teslim" href="https://www.linkedin.com/in/muhammad-olaitan-teslim-81423b427" />
+            <Channel icon={<Linkedin size={18} />} label="LinkedIn" value="DǝǝPeaçeAɠency" href="https://www.linkedin.com/in/deepeace-agency-988556426" />
             <Channel icon={<Instagram size={18} />} label="Instagram" value="@deepeaceagency" href="https://www.instagram.com/deepeaceagency" />
             <Channel icon={<Music2 size={18} />} label="TikTok" value="@dee.peace0" href="https://www.tiktok.com/@dee.peace0" />
           </div>
@@ -152,13 +146,13 @@ export default function Contact() {
                   initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
                   className="font-display text-3xl font-bold"
                 >
-                  Message received.
+                  Message Sent Successfully
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
                   className="mt-3 text-muted-foreground max-w-sm"
                 >
-                  We'll reply to your inbox within 24 hours with a tailored growth plan.
+                  Thank you for reaching out to DǝǝPeaçeAɠency. Your message has been received and I'll get back to you as soon as possible.
                 </motion.p>
                 <motion.button
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
@@ -195,7 +189,7 @@ export default function Contact() {
 
 
                 {status === "error" && (
-                  <p className="text-sm text-destructive">Send failed: {errorMsg}. Try again or email us directly.</p>
+                  <p className="text-sm text-destructive">{errorMsg} Please try again or email theonlypeaceexpert@gmail.com directly.</p>
                 )}
 
                 <button

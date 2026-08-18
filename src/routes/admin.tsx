@@ -102,6 +102,13 @@ function AdminPage() {
     setBusyId(null);
   };
 
+  const setLeadStatus = async (id: string, status: LeadStatus) => {
+    setBusyId(id);
+    await supabase.from("ai_leads").update({ status }).eq("id", id);
+    await load();
+    setBusyId(null);
+  };
+
   const remove = async (id: string) => {
     setBusyId(id);
     await supabase.from("reviews").delete().eq("id", id);

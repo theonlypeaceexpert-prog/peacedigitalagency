@@ -184,15 +184,40 @@ function AdminPage() {
             ? leads.map((l) => (
                 <div key={l.id} className="rounded-3xl border border-border bg-card p-6">
                   <div className="flex flex-wrap justify-between gap-2">
-                    <p className="font-semibold">{l.name}</p>
+                    <p className="font-semibold">
+                      {l.name}{" "}
+                      <span className="rounded-full border border-border px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+                        {l.source === "contact" ? "Contact form" : "AI assistant"}
+                      </span>
+                    </p>
                     <p className="text-xs text-muted-foreground">{timeAgo(l.created_at)}</p>
                   </div>
                   <p className="mt-1 text-sm text-muted-foreground">
                     {l.email}
                     {l.phone ? ` · ${l.phone}` : ""}
                     {l.website ? ` · ${l.website}` : ""}
+                    {l.company ? ` · ${l.company}` : ""}
+                    {l.service ? ` · ${l.service}` : ""}
+                    {l.budget ? ` · ${l.budget}` : ""}
                   </p>
                   <p className="mt-3 whitespace-pre-wrap text-sm">{l.question}</p>
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <span className="text-xs text-muted-foreground">Status</span>
+                    {LEAD_STATUSES.map((s) => (
+                      <button
+                        key={s}
+                        disabled={busyId === l.id}
+                        onClick={() => void setLeadStatus(l.id, s)}
+                        className={`rounded-full px-3 py-1 text-xs font-medium capitalize transition disabled:opacity-60 ${
+                          l.status === s
+                            ? "bg-foreground text-background"
+                            : "border border-border hover:bg-secondary"
+                        }`}
+                      >
+                        {s.replace("_", " ")}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               ))
             : filtered.map((r) => (

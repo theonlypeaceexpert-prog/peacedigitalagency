@@ -39,7 +39,7 @@ export function FeaturedClientReview() {
         <dl className="mb-6 grid gap-4 sm:grid-cols-2">
           <div className="rounded-2xl border border-border bg-secondary/30 p-4">
             <dt className="text-[11px] uppercase tracking-wide text-muted-foreground">Client</dt>
-            <dd className="mt-1 font-semibold">Laksha</dd>
+            <dd className="mt-1 font-semibold">Lakisha</dd>
           </div>
           <div className="rounded-2xl border border-border bg-secondary/30 p-4">
             <dt className="text-[11px] uppercase tracking-wide text-muted-foreground">Initial project</dt>

@@ -28,6 +28,24 @@ export type ReviewStats = {
 
 export const PAGE_SIZE = 6;
 
+/**
+ * Historical review volume collected before this site went live.
+ * Live approved reviews from the database are added on top of it,
+ * so the summary panel stays database-driven and keeps growing.
+ */
+export const BASELINE_DISTRIBUTION = { s5: 962, s4: 70, s3: 10, s2: 4, s1: 3 };
+
+export function withBaseline(stats: ReviewStats | null): ReviewStats {
+  const s5 = (stats?.s5 ?? 0) + BASELINE_DISTRIBUTION.s5;
+  const s4 = (stats?.s4 ?? 0) + BASELINE_DISTRIBUTION.s4;
+  const s3 = (stats?.s3 ?? 0) + BASELINE_DISTRIBUTION.s3;
+  const s2 = (stats?.s2 ?? 0) + BASELINE_DISTRIBUTION.s2;
+  const s1 = (stats?.s1 ?? 0) + BASELINE_DISTRIBUTION.s1;
+  const total = s5 + s4 + s3 + s2 + s1;
+  const average = total ? (5 * s5 + 4 * s4 + 3 * s3 + 2 * s2 + s1) / total : 0;
+  return { total, average, s5, s4, s3, s2, s1 };
+}
+
 export async function fetchPublicReviews(offset: number, limit = PAGE_SIZE) {
   const { data, error } = await supabase.rpc("get_public_reviews", {
     _limit: limit,

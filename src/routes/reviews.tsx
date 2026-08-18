@@ -133,15 +133,16 @@ export default function Reviews() {
 }
 
 function RatingSummary({ stats, loading }: { stats: ReviewStats | null; loading: boolean }) {
-  const total = stats?.total ?? 0;
+  const merged = withBaseline(stats);
+  const total = merged.total;
   const dist = [
-    { stars: 5, count: stats?.s5 ?? 0 },
-    { stars: 4, count: stats?.s4 ?? 0 },
-    { stars: 3, count: stats?.s3 ?? 0 },
-    { stars: 2, count: stats?.s2 ?? 0 },
-    { stars: 1, count: stats?.s1 ?? 0 },
+    { stars: 5, count: merged.s5 },
+    { stars: 4, count: merged.s4 },
+    { stars: 3, count: merged.s3 },
+    { stars: 2, count: merged.s2 },
+    { stars: 1, count: merged.s1 },
   ];
-  const avg = stats?.average ?? 0;
+  const avg = merged.average;
 
   return (
     <motion.div

@@ -36,13 +36,21 @@ type Row = {
   created_at: string;
 };
 
+const LEAD_STATUSES = ["new", "contacted", "in_progress", "completed", "archived"] as const;
+type LeadStatus = (typeof LEAD_STATUSES)[number];
+
 type Lead = {
   id: string;
   name: string;
   email: string;
   website: string | null;
   phone: string | null;
+  company: string | null;
+  service: string | null;
+  budget: string | null;
   question: string;
+  source: string;
+  status: LeadStatus;
   created_at: string;
 };
 

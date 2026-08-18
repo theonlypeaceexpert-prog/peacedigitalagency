@@ -174,7 +174,7 @@ function RatingSummary({ stats, loading }: { stats: ReviewStats | null; loading:
           ))}
         </div>
         <p className="mt-5 text-lg font-semibold">
-          {loading ? "Loading reviews…" : `${total.toLocaleString()} review${total === 1 ? "" : "s"}`}
+          {loading ? "Loading reviews…" : `${total.toLocaleString()}+ Reviews`}
         </p>
         <p className="mt-1 text-sm text-muted-foreground">
           Approved feedback from founders &amp; growth teams worldwide.

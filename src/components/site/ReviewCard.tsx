@@ -56,11 +56,6 @@ export function ReviewCard({ review, index = 0 }: { review: PublicReview; index?
             </span>
           </>
         )}
-        {review.is_sample && (
-          <span className="inline-flex items-center rounded-full border border-border px-2 py-0.5 font-medium uppercase tracking-wide">
-            Sample
-          </span>
-        )}
       </div>
 
       <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground/90">"{review.body}"</p>

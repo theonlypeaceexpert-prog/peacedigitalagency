@@ -6,6 +6,8 @@ import { useId, useState, type FormEvent } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { submitContact } from "@/lib/ai.functions";
+import { AGENCY_EMAILS } from "@/lib/contact-emails";
+import { EmailChannels } from "@/components/site/EmailChannels";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -30,7 +32,7 @@ export const Route = createFileRoute("/contact")({
           areaServed: "Worldwide",
           contactPoint: {
             "@type": "ContactPoint",
-            email: "theonlypeaceexpert@gmail.com",
+            email: AGENCY_EMAILS.projects,
             contactType: "sales",
             availableLanguage: ["English"],
           },
@@ -104,7 +106,7 @@ export default function Contact() {
 
           <div className="mt-10 space-y-3">
             <Channel icon={<MessageCircle size={18} />} label="WhatsApp" value="+234 704 785 8283" href="https://wa.me/2347047858283" />
-            <Channel icon={<Mail size={18} />} label="Email" value="theonlypeaceexpert@gmail.com" href="mailto:theonlypeaceexpert@gmail.com" />
+            <Channel icon={<Mail size={18} />} label="New projects" value={AGENCY_EMAILS.projects} href={`mailto:${AGENCY_EMAILS.projects}`} />
             <Channel icon={<Linkedin size={18} />} label="LinkedIn" value="DǝǝPeaçeAɠency" href="https://www.linkedin.com/in/deepeace-agency-988556426" />
             <Channel icon={<Instagram size={18} />} label="Instagram" value="@deepeaceagency" href="https://www.instagram.com/deepeaceagency" />
             <Channel icon={<Music2 size={18} />} label="TikTok" value="@dee.peace0" href="https://www.tiktok.com/@dee.peace0" />
@@ -189,7 +191,7 @@ export default function Contact() {
 
 
                 {status === "error" && (
-                  <p className="text-sm text-destructive">{errorMsg} Please try again or email theonlypeaceexpert@gmail.com directly.</p>
+                   <p className="text-sm text-destructive">{errorMsg} Please try again or email {AGENCY_EMAILS.projects} directly.</p>
                 )}
 
                 <button
@@ -207,6 +209,7 @@ export default function Contact() {
           </AnimatePresence>
         </div>
       </section>
+      <EmailChannels />
     </Layout>
   );
 }

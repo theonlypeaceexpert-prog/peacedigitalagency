@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/site/Layout";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check, Mail } from "lucide-react";
+import { AGENCY_EMAILS } from "@/lib/contact-emails";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -89,6 +90,22 @@ export default function About() {
               <div className="text-foreground/80">{e}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-24">
+        <div className="border-t border-border pt-10">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.2em] text-accent font-medium">Stay in touch</p>
+              <h2 className="mt-3 font-display text-3xl font-bold tracking-tight">The right inbox for every conversation.</h2>
+            </div>
+            <div className="grid gap-2 text-sm sm:text-right">
+              <a href={`mailto:${AGENCY_EMAILS.general}`} className="inline-flex items-center gap-2 transition hover:text-accent sm:justify-end"><Mail size={14} /> General: {AGENCY_EMAILS.general}</a>
+              <a href={`mailto:${AGENCY_EMAILS.projects}`} className="inline-flex items-center gap-2 font-semibold transition hover:text-accent sm:justify-end"><Mail size={14} /> New projects: {AGENCY_EMAILS.projects}</a>
+              <a href={`mailto:${AGENCY_EMAILS.support}`} className="inline-flex items-center gap-2 transition hover:text-accent sm:justify-end"><Mail size={14} /> Support: {AGENCY_EMAILS.support}</a>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -94,7 +94,7 @@ export const submitEscalation = createServerFn({ method: "POST" })
 
     // Notify Peace by email (best-effort; the lead is already stored).
     try {
-      await fetch("https://formsubmit.co/ajax/theonlypeaceexpert@gmail.com", {
+      await fetch("https://formsubmit.co/ajax/contact@deepeaceagency.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
@@ -152,7 +152,7 @@ export const submitContact = createServerFn({ method: "POST" })
     }
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/theonlypeaceexpert@gmail.com", {
+      const res = await fetch("https://formsubmit.co/ajax/contact@deepeaceagency.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
@@ -172,7 +172,7 @@ export const submitContact = createServerFn({ method: "POST" })
         console.error("contact email failed", res.status, await res.text());
         return {
           ok: false,
-          error: "Your message was saved but the email notification failed. Please retry or email theonlypeaceexpert@gmail.com directly.",
+          error: "Your message was saved but the email notification failed. Please retry or email contact@deepeaceagency.com directly.",
         };
       }
     } catch (mailError) {

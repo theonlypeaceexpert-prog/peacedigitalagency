@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, Mail, MessageCircle, Linkedin } from "lucide-react";
 import logoAsset from "@/assets/deepeace-logo-transparent.png.asset.json";
 import { assetUrl } from "@/lib/asset-url";
+import { AGENCY_EMAILS } from "@/lib/contact-emails";
 
 export function Footer() {
   return (
@@ -35,7 +36,7 @@ export function Footer() {
               <a href="https://www.tiktok.com/@dee.peace0" target="_blank" rel="noreferrer" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="TikTok">
                 <span className="text-sm font-bold">TT</span>
               </a>
-              <a href="mailto:Theonlypeaceexpert@gmail.com" className="glass rounded-full p-3 hover:scale-105 transition" aria-label="Email">
+              <a href={`mailto:${AGENCY_EMAILS.projects}`} className="glass rounded-full p-3 hover:scale-105 transition" aria-label="Email Deepeace Agency">
                 <Mail size={18} />
               </a>
             </div>
@@ -53,9 +54,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold mb-4">Contact</h4>
+            <h4 className="text-sm font-semibold mb-4">Contact Deepeace Agency</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Theonlypeaceexpert@gmail.com</li>
+              <li><a href={`mailto:${AGENCY_EMAILS.general}`} className="transition hover:text-foreground">General: {AGENCY_EMAILS.general}</a></li>
+              <li><a href={`mailto:${AGENCY_EMAILS.projects}`} className="transition hover:text-foreground">Projects: {AGENCY_EMAILS.projects}</a></li>
+              <li><a href={`mailto:${AGENCY_EMAILS.support}`} className="transition hover:text-foreground">Support: {AGENCY_EMAILS.support}</a></li>
               <li>+234 704 785 8283</li>
               <li>Worldwide · Remote</li>
             </ul>

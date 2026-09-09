@@ -30,7 +30,7 @@ export const PAGE_SIZE = 6;
 
 /**
  * Historical review volume collected before this site went live.
- * Live approved reviews from the database are added on top of it,
+ * Live non-rejected reviews from the database are added on top of it,
  * so the summary panel stays database-driven and keeps growing.
  */
 export const BASELINE_DISTRIBUTION = { s5: 962, s4: 70, s3: 10, s2: 4, s1: 3 };

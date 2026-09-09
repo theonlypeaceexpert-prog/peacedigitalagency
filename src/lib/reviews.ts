@@ -47,12 +47,28 @@ export function withBaseline(stats: ReviewStats | null): ReviewStats {
 }
 
 export async function fetchPublicReviews(offset: number, limit = PAGE_SIZE) {
-  const { data, error } = await supabase.rpc("get_public_reviews", {
-    _limit: limit,
-    _offset: offset,
-  });
+  const { data, error } = await supabase
+    .from("review_public_feed")
+    .select("id, name, country, country_code, avatar_url, rating, body, service, price, duration, repeat_client, is_sample, created_at")
+    .order("created_at", { ascending: false })
+    .range(offset, offset + limit - 1);
   if (error) throw error;
-  return withAvatarUrls((data ?? []) as PublicReview[]);
+  const rows = (data ?? []).map((row) => ({
+    id: row.id ?? "",
+    name: row.name ?? "",
+    country: row.country ?? "",
+    country_code: row.country_code ?? "",
+    avatar_url: row.avatar_url,
+    rating: Number(row.rating ?? 0),
+    body: row.body ?? "",
+    service: row.service ?? "",
+    price: row.price ?? "",
+    duration: row.duration ?? "",
+    repeat_client: Boolean(row.repeat_client),
+    is_sample: Boolean(row.is_sample),
+    created_at: row.created_at ?? new Date(0).toISOString(),
+  })) as PublicReview[];
+  return withAvatarUrls(rows);
 }
 
 /**
@@ -75,9 +91,12 @@ async function withAvatarUrls(rows: PublicReview[]) {
 }
 
 export async function fetchReviewStats(): Promise<ReviewStats> {
-  const { data, error } = await supabase.rpc("get_review_stats");
+  const { data, error } = await supabase
+    .from("review_public_stats")
+    .select("total, average, s5, s4, s3, s2, s1")
+    .maybeSingle();
   if (error) throw error;
-  const row = (data ?? [])[0];
+  const row = data;
   return {
     total: Number(row?.total ?? 0),
     average: Number(row?.average ?? 0),

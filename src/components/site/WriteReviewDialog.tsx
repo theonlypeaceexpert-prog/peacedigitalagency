@@ -161,8 +161,8 @@ export function WriteReviewDialog({ onSubmitted }: { onSubmitted?: () => void })
                   </motion.div>
                   <h3 className="mt-6 font-display text-2xl font-bold">Thank you!</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Your review was submitted and is now pending approval. Once it's verified it
-                    will appear on this page.
+                     Your review was submitted and is now visible on this page. If it is rejected
+                     during moderation, it will be removed from the public list.
                   </p>
                   <button
                     onClick={close}

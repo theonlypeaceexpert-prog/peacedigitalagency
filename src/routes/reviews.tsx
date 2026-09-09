@@ -79,7 +79,7 @@ export default function Reviews() {
           Loved by founders. Trusted by growth teams.
         </h1>
         <p className="mt-6 max-w-2xl text-muted-foreground">
-          Every review is submitted by a client and manually approved before it appears here.
+          Every review submitted by a client appears here immediately, unless it is rejected during moderation.
         </p>
       </section>
 
@@ -92,7 +92,7 @@ export default function Reviews() {
       <section className="mx-auto max-w-7xl px-6 pb-24">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">What clients say.</h2>
-          <WriteReviewDialog />
+          <WriteReviewDialog onSubmitted={() => void load()} />
         </div>
 
         {loading ? (
@@ -105,7 +105,7 @@ export default function Reviews() {
           <p className="rounded-3xl border border-border bg-card p-8 text-sm text-muted-foreground">{error}</p>
         ) : reviews.length === 0 ? (
           <p className="rounded-3xl border border-border bg-card p-8 text-sm text-muted-foreground">
-            No approved reviews yet — be the first to share your experience.
+            No reviews yet — be the first to share your experience.
           </p>
         ) : (
           <>

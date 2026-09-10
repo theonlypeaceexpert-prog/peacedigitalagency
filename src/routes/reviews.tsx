@@ -90,6 +90,8 @@ export default function Reviews() {
 
       <FeaturedClientReview />
 
+      <VerifiedReviewsButtons />
+
       <section className="mx-auto max-w-7xl px-6 pb-24">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">What clients say.</h2>

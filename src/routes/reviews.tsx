@@ -14,6 +14,7 @@ import {
   type PublicReview,
   type ReviewStats,
 } from "@/lib/reviews";
+import { VerifiedReviewsButtons } from "@/components/site/TrustedReviews";
 
 export const Route = createFileRoute("/reviews")({
   head: () => ({

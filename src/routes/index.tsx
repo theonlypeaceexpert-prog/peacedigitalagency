@@ -211,6 +211,9 @@ function Home() {
         <p className="mt-8 text-sm text-muted-foreground">— Founder, premium DTC apparel brand</p>
       </section>
 
+      {/* TRUSTED REVIEWS */}
+      <TrustedReviews />
+
       {/* FAQ */}
       <section className="mx-auto max-w-3xl px-6 py-24">
         <h2 className="font-display text-4xl sm:text-5xl font-bold text-center tracking-tight mb-12">Questions, answered.</h2>

@@ -14,6 +14,7 @@ import {
   type PublicReview,
   type ReviewStats,
 } from "@/lib/reviews";
+import { VerifiedReviewsButtons } from "@/components/site/TrustedReviews";
 
 export const Route = createFileRoute("/reviews")({
   head: () => ({
@@ -88,6 +89,8 @@ export default function Reviews() {
       </section>
 
       <FeaturedClientReview />
+
+      <VerifiedReviewsButtons />
 
       <section className="mx-auto max-w-7xl px-6 pb-24">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">

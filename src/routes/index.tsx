@@ -5,6 +5,7 @@ import { Layout } from "@/components/site/Layout";
 import { stats, projects, services } from "@/lib/site-data";
 import { PlatformLogos } from "@/components/site/PlatformLogos";
 import { SitePreview } from "@/components/site/SitePreview";
+import { TrustedReviews } from "@/components/site/TrustedReviews";
 
 export const Route = createFileRoute("/")({
   head: () => ({

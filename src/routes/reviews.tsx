@@ -23,10 +23,11 @@ export const Route = createFileRoute("/reviews")({
       { name: "description", content: "Verified client reviews for DǝǝPeaçeAɠency: ratings, services, project duration and outcomes. Share your own experience." },
       { property: "og:title", content: "Reviews & Testimonials — DǝǝPeaçeAɠency" },
       { property: "og:description", content: "Verified client reviews for DǝǝPeaçeAɠency: ratings, services, project duration and outcomes." },
-      { property: "og:url", content: "https://peacedigitalagency.lovable.app/reviews" },
+      { property: "og:url", content: "https://www.deepeaceagency.com/reviews" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/reviews" }],
+    links: [{ rel: "canonical", href: "https://www.deepeaceagency.com/reviews" }],
   }),
   component: Reviews,
 });

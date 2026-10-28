@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://peacedigitalagency.lovable.app/sitemap.xml
+Sitemap: https://www.deepeaceagency.com/sitemap.xml

@@ -10,10 +10,11 @@ export const Route = createFileRoute("/ugc")({
       { name: "description", content: "Scroll-stopping UGC, AI commercials and product videos crafted for premium eCommerce brands." },
       { property: "og:title", content: "UGC & Video Portfolio — DǝǝPeaçeAɠency" },
       { property: "og:description", content: "Scroll-stopping UGC, AI commercials and product videos crafted for premium eCommerce brands." },
-      { property: "og:url", content: "https://peacedigitalagency.lovable.app/ugc" },
+      { property: "og:url", content: "https://www.deepeaceagency.com/ugc" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/ugc" }],
+    links: [{ rel: "canonical", href: "https://www.deepeaceagency.com/ugc" }],
   }),
   component: UgcRoute,
 });

@@ -16,10 +16,11 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Tell us about your project. We'll send back a tailored growth plan within 24 hours." },
       { property: "og:title", content: "Contact — DǝǝPeaçeAɠency" },
       { property: "og:description", content: "Tell us about your project. We'll send back a tailored growth plan within 24 hours." },
-      { property: "og:url", content: "https://peacedigitalagency.lovable.app/contact" },
+      { property: "og:url", content: "https://www.deepeaceagency.com/contact" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/contact" }],
+    links: [{ rel: "canonical", href: "https://www.deepeaceagency.com/contact" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/contact")({
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
           name: "DǝǝPeaçeAɠency",
-          url: "https://peacedigitalagency.lovable.app",
+          url: "https://www.deepeaceagency.com",
           description: "Premium digital growth agency for eCommerce brands — Shopify, AI automation, performance marketing.",
           areaServed: "Worldwide",
           contactPoint: {

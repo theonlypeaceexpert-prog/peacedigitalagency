@@ -11,10 +11,11 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "Boutique digital growth studio crafting premium Shopify experiences and AI-powered systems for ambitious global brands." },
       { property: "og:title", content: "About — DǝǝPeaçeAɠency" },
       { property: "og:description", content: "Boutique digital growth studio crafting premium Shopify experiences and AI-powered systems for ambitious global brands." },
-      { property: "og:url", content: "https://peacedigitalagency.lovable.app/about" },
+      { property: "og:url", content: "https://www.deepeaceagency.com/about" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/about" }],
+    links: [{ rel: "canonical", href: "https://www.deepeaceagency.com/about" }],
   }),
   component: About,
 });

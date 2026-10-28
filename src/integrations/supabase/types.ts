@@ -143,6 +143,66 @@ export type Database = {
         }
         Relationships: []
       }
+      website_report_settings: {
+        Row: {
+          ga4_property_id: string | null
+          id: string
+          search_console_site: string | null
+          updated_at: string
+        }
+        Insert: {
+          ga4_property_id?: string | null
+          id?: string
+          search_console_site?: string | null
+          updated_at?: string
+        }
+        Update: {
+          ga4_property_id?: string | null
+          id?: string
+          search_console_site?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      website_report_snapshots: {
+        Row: {
+          payload: Json
+          refreshed_at: string
+          report_key: string
+        }
+        Insert: {
+          payload: Json
+          refreshed_at?: string
+          report_key: string
+        }
+        Update: {
+          payload?: Json
+          refreshed_at?: string
+          report_key?: string
+        }
+        Relationships: []
+      }
+      website_seo_issue_states: {
+        Row: {
+          issue_key: string
+          state: string
+          updated_at: string
+          updated_by: string
+        }
+        Insert: {
+          issue_key: string
+          state: string
+          updated_at?: string
+          updated_by: string
+        }
+        Update: {
+          issue_key?: string
+          state?: string
+          updated_at?: string
+          updated_by?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       review_public_feed: {

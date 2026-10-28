@@ -11,10 +11,11 @@ export const Route = createFileRoute("/results")({
       { name: "description", content: "How DǝǝPeaçeAɠency builds: performance-focused growth, Core Web Vitals standards, SEO fundamentals — plus a look at the work in action." },
       { property: "og:title", content: "Results & Build Standards — DǝǝPeaçeAɠency" },
       { property: "og:description", content: "Performance-focused growth: Core Web Vitals standards, SEO fundamentals and the work in action." },
-      { property: "og:url", content: "https://peacedigitalagency.lovable.app/results" },
+      { property: "og:url", content: "https://www.deepeaceagency.com/results" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/results" }],
+    links: [{ rel: "canonical", href: "https://www.deepeaceagency.com/results" }],
   }),
   component: Results,
 });

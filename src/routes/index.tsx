@@ -14,10 +14,11 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "We design, build and scale premium eCommerce experiences with AI-powered systems and conversion-led design." },
       { property: "og:title", content: "DǝǝPeaçeAɠency — Premium Growth for eCommerce" },
       { property: "og:description", content: "We design, build and scale premium eCommerce experiences with AI-powered systems and conversion-led design." },
-      { property: "og:url", content: "https://peacedigitalagency.lovable.app/" },
+      { property: "og:url", content: "https://www.deepeaceagency.com/" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/" }],
+    links: [{ rel: "canonical", href: "https://www.deepeaceagency.com/" }],
     scripts: [
       {
         type: "application/ld+json",

@@ -10,10 +10,11 @@ export const Route = createFileRoute("/case-studies")({
       { name: "description", content: "Deep dives into how we scaled premium eCommerce brands through design, development and AI-powered systems." },
       { property: "og:title", content: "Case Studies — DǝǝPeaçeAɠency" },
       { property: "og:description", content: "Deep dives into how we scaled premium eCommerce brands through design, development and AI-powered systems." },
-      { property: "og:url", content: "https://peacedigitalagency.lovable.app/case-studies" },
+      { property: "og:url", content: "https://www.deepeaceagency.com/case-studies" },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://peacedigitalagency.lovable.app/case-studies" }],
+    links: [{ rel: "canonical", href: "https://www.deepeaceagency.com/case-studies" }],
   }),
   component: CaseStudies,
 });

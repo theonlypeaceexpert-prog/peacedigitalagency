@@ -5,7 +5,10 @@ function expect(value: unknown) {
     toBe: (expected: unknown) => assert.equal(value, expected),
     toEqual: (expected: unknown) => assert.deepEqual(value, expected),
     toBeNull: () => assert.equal(value, null),
-    toThrow: (message?: string) => assert.throws(value as () => unknown, message ? new RegExp(message) : undefined),
+    toThrow: (message?: string) => {
+      if (message) assert.throws(value as () => unknown, new RegExp(message));
+      else assert.throws(value as () => unknown);
+    },
     not: { toThrow: () => assert.doesNotThrow(value as () => unknown) },
   };
 }

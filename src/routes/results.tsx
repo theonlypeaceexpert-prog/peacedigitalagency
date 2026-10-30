@@ -14,6 +14,8 @@ export const Route = createFileRoute("/results")({
       { property: "og:url", content: "https://www.deepeaceagency.com/results" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: resultsVideo.poster },
+      { name: "twitter:image", content: resultsVideo.poster },
     ],
     links: [{ rel: "canonical", href: "https://www.deepeaceagency.com/results" }],
   }),

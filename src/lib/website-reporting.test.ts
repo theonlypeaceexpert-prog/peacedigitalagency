@@ -1,4 +1,17 @@
-import { describe, expect, test } from "bun:test";
+import { describe, it as test } from "node:test";
+import assert from "node:assert/strict";
+function expect(value: unknown) {
+  return {
+    toBe: (expected: unknown) => assert.equal(value, expected),
+    toEqual: (expected: unknown) => assert.deepEqual(value, expected),
+    toBeNull: () => assert.equal(value, null),
+    toThrow: (message?: string) => {
+      if (message) assert.throws(value as () => unknown, new RegExp(message));
+      else assert.throws(value as () => unknown);
+    },
+    not: { toThrow: () => assert.doesNotThrow(value as () => unknown) },
+  };
+}
 import { canonicalUrl, completedLeadRate, coversWebsite, equivalentPrevious, percentChange, requireAdminRole, validateRange } from "./website-reporting";
 
 describe("website reporting rules", () => {

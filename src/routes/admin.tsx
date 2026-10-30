@@ -1,4 +1,6 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
 import { useCallback, useEffect, useState } from "react";
 import { Check, Loader2, LogOut, Trash2, X } from "lucide-react";
 import { Layout } from "@/components/site/Layout";
@@ -56,6 +58,13 @@ type Lead = {
 
 function AdminPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const signOut = async () => {
+    await queryClient.cancelQueries();
+    queryClient.clear();
+    await supabase.auth.signOut();
+    await navigate({ to: "/auth", replace: true });
+  };
   const [ready, setReady] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [rows, setRows] = useState<Row[]>([]);
@@ -135,10 +144,7 @@ function AdminPage() {
             This account isn't an approved moderator.
           </p>
           <button
-            onClick={async () => {
-              await supabase.auth.signOut();
-              void navigate({ to: "/auth" });
-            }}
+            onClick={signOut}
             className="mt-6 rounded-full border border-border px-6 py-2.5 text-sm font-semibold"
           >
             Sign out
@@ -161,11 +167,9 @@ function AdminPage() {
       <section className="mx-auto max-w-6xl px-6 py-16">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h1 className="font-display text-4xl font-bold tracking-tight">Moderation</h1>
+          <Button asChild variant="outline"><Link to="/admin/analytics">Website analytics</Link></Button>
           <button
-            onClick={async () => {
-              await supabase.auth.signOut();
-              void navigate({ to: "/auth" });
-            }}
+            onClick={signOut}
             className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2 text-sm font-semibold"
           >
             <LogOut size={14} /> Sign out

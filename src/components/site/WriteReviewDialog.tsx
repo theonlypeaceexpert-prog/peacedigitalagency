@@ -1,7 +1,9 @@
 import { useId, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, X, Check, Loader2, Upload } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import { COUNTRIES, SERVICE_OPTIONS } from "@/lib/reviews";
+
 
 
 type Form = {

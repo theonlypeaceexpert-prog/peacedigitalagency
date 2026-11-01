@@ -80,6 +80,7 @@ export const getSearchPerformance = createServerFn({ method: "POST" }).middlewar
     const cache = await context.supabase.from("website_report_snapshots").select("payload,refreshed_at").eq("report_key", reportKey).maybeSingle();
     if (cache.error) throw new Error("Report cache could not be loaded.");
     if (!data.refresh && cache.data) return { status: "ok" as const, report: cache.data.payload as unknown as SearchReport, cached: true };
+    if (!data.refresh) return { status: "refresh_required" as const, message: "No saved search report for this period. Select Refresh reports to retrieve data from Google." };
     if (cache.data && Date.now() - Date.parse(cache.data.refreshed_at) < 60000) return { status: "ok" as const, report: cache.data.payload as unknown as SearchReport, cached: true };
     const sites = await call("/webmasters/v3/sites") as { siteEntry?: { siteUrl: string; permissionLevel?: string }[] };
     const matches = (sites.siteEntry ?? []).filter(site => site.permissionLevel !== "siteUnverifiedUser" && coversWebsite(site.siteUrl)).map(s => s.siteUrl);
@@ -111,7 +112,7 @@ export const getSearchPerformance = createServerFn({ method: "POST" }).middlewar
     const report: SearchReport = { ...totalsOf(totals[0]), previous: totalsOf(before[0]), trend: dates.map(r => ({ label: r.keys?.[0] ?? "", primary: r.clicks ?? 0, secondary: r.impressions ?? 0 })), queries: table(queries), pages: table(pages), sitemaps: (sitemapData.sitemap ?? []).map(s => ({ url: s.path, errors: Number(s.errors ?? 0), warnings: Number(s.warnings ?? 0), submitted: s.lastSubmitted ?? null, downloaded: s.lastDownloaded ?? null, pending: Boolean(s.isPending) })), property, range, refreshedAt: new Date().toISOString() };
     const saved = await context.supabase.from("website_report_settings").upsert({ id: "website", search_console_site: property, updated_at: report.refreshedAt });
     if (saved.error) throw new Error("Could not save the selected property.");
-    const stored = await context.supabase.from("website_report_snapshots").upsert({ report_key: reportKey, payload: JSON.parse(JSON.stringify(report)), refreshed_at: report.refreshedAt });
+    const stored = await context.supabase.from("website_report_snapshots").upsert({ report_key: `gsc:${property}:${range.start}:${range.end}`, payload: JSON.parse(JSON.stringify(report)), refreshed_at: report.refreshedAt });
     if (stored.error) throw new Error("Could not store the search report.");
     return { status: "ok" as const, report, cached: false };
   });

@@ -1,4 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
+import { getReviewAvatarUrls } from "@/lib/review-avatars.functions";
+
 
 export type PublicReview = {
   id: string;

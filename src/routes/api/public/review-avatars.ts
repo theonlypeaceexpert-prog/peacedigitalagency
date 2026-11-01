@@ -66,6 +66,3 @@ export const Route = createFileRoute("/api/public/review-avatars")({
     },
   },
 });
-
-// Referenced so the zod import stays meaningful if validation grows later.
-export const avatarUploadLimits = z.object({ maxBytes: z.number() });

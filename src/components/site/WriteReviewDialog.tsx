@@ -4,6 +4,8 @@ import { Star, X, Check, Loader2, Upload } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { COUNTRIES, SERVICE_OPTIONS } from "@/lib/reviews";
 
+
+
 type Form = {
   name: string;
   email: string;
@@ -73,14 +75,17 @@ export function WriteReviewDialog({ onSubmitted }: { onSubmitted?: () => void })
     try {
       let avatarUrl: string | null = null;
       if (photo) {
-        const ext = photo.name.split(".").pop()?.toLowerCase() || "jpg";
-        const path = `${crypto.randomUUID()}.${ext}`;
-        const { error: upErr } = await supabase.storage
-          .from("review-avatars")
-          .upload(path, photo, { cacheControl: "3600", upsert: false });
+        const body = new FormData();
+        body.append("file", photo);
+        const res = await fetch("/api/public/review-avatars", { method: "POST", body });
+        const json = (await res.json().catch(() => null)) as { path?: string } | null;
+        if (!res.ok || !json?.path) {
+          throw new Error("Photo upload failed");
+        }
         // Bucket is private — store the object path; the reviews page signs it on read.
-        if (!upErr) avatarUrl = path;
+        avatarUrl = json.path;
       }
+
 
       const country = COUNTRIES.find((c) => c.name === form.country);
       const { error: insErr } = await supabase.from("reviews").insert({

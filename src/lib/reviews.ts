@@ -1,4 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
+import { getReviewAvatarUrls } from "@/lib/review-avatars.functions";
+
 
 export type PublicReview = {
   id: string;
@@ -76,19 +78,21 @@ export async function fetchPublicReviews(offset: number, limit = PAGE_SIZE) {
  * Swap them for short-lived signed URLs before rendering.
  */
 async function withAvatarUrls(rows: PublicReview[]) {
-  const paths = rows
-    .map((r) => r.avatar_url)
-    .filter((p): p is string => Boolean(p) && !/^https?:\/\//i.test(p!));
+  const paths = Array.from(
+    new Set(
+      rows
+        .map((r) => r.avatar_url)
+        .filter((p): p is string => Boolean(p) && !/^https?:\/\//i.test(p!)),
+    ),
+  );
   if (paths.length === 0) return rows;
 
-  const { data } = await supabase.storage.from("review-avatars").createSignedUrls(paths, 3600);
-  const map = new Map((data ?? []).map((d) => [d.path ?? "", d.signedUrl]));
+  const { urls } = await getReviewAvatarUrls({ data: { paths } });
   return rows.map((r) =>
-    r.avatar_url && map.get(r.avatar_url)
-      ? { ...r, avatar_url: map.get(r.avatar_url) as string }
-      : r,
+    r.avatar_url && urls[r.avatar_url] ? { ...r, avatar_url: urls[r.avatar_url] } : r,
   );
 }
+
 
 export async function fetchReviewStats(): Promise<ReviewStats> {
   const { data, error } = await supabase

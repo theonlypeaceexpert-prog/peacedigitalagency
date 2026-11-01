@@ -23,6 +23,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UgcRouteImport } from './routes/ugc'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin/analytics'
+import { Route as ApiPublicReviewAvatarsRouteImport } from './routes/api/public/review-avatars'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -94,6 +95,11 @@ const AuthenticatedAdminAnalyticsRoute =
     path: '/admin/analytics',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const ApiPublicReviewAvatarsRoute = ApiPublicReviewAvatarsRouteImport.update({
+  id: '/api/public/review-avatars',
+  path: '/api/public/review-avatars',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ugc': typeof UgcRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/api/public/review-avatars': typeof ApiPublicReviewAvatarsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ugc': typeof UgcRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/api/public/review-avatars': typeof ApiPublicReviewAvatarsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -141,6 +149,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ugc': typeof UgcRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/api/public/review-avatars': typeof ApiPublicReviewAvatarsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/ugc'
     | '/admin/analytics'
+    | '/api/public/review-avatars'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -173,6 +183,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/ugc'
     | '/admin/analytics'
+    | '/api/public/review-avatars'
   id:
     | '__root__'
     | '/'
@@ -189,6 +200,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/ugc'
     | '/_authenticated/admin/analytics'
+    | '/api/public/review-avatars'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -205,6 +217,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UgcRoute: typeof UgcRoute
+  ApiPublicReviewAvatarsRoute: typeof ApiPublicReviewAvatarsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -307,6 +320,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminAnalyticsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/review-avatars': {
+      id: '/api/public/review-avatars'
+      path: '/api/public/review-avatars'
+      fullPath: '/api/public/review-avatars'
+      preLoaderRoute: typeof ApiPublicReviewAvatarsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -335,6 +355,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UgcRoute: UgcRoute,
+  ApiPublicReviewAvatarsRoute: ApiPublicReviewAvatarsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

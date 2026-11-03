@@ -1,3 +1,7 @@
+import carterslogPreview from "@/assets/carterslog-homepage.jpg.asset.json";
+import gearUpPreview from "@/assets/gear-up-homepage.jpg.asset.json";
+import { assetUrl } from "@/lib/asset-url";
+
 export const services = [
   { title: "Website Design", desc: "Editorial, conversion-focused interfaces designed for premium brands.", icon: "Palette" },
   { title: "Website Development", desc: "Hand-crafted, lightning-fast websites built to scale revenue.", icon: "Code2" },
@@ -34,6 +38,8 @@ export const projects = [
   { shot: "/screenshots/slickgorilla.jpg", name: "Slick Gorilla", url: "https://slickgorilla.co.uk/", industry: "Men's Grooming", services: ["Shopify", "Meta Ads"] },
   { shot: "/screenshots/eloriabeauty.jpg", name: "Eloria Beauty", url: "https://eloriabeauty.ca/", industry: "Beauty", services: ["Shopify", "Klaviyo"] },
   { shot: "/screenshots/peksshop.jpg", name: "PEKS Shop", url: "https://peksshop.de/", industry: "Lifestyle", services: ["Shopify", "SEO"] },
+  { shot: assetUrl(carterslogPreview.url), name: "CartersLog", url: "https://carterslog.store/", industry: "Apparel, Gifts & Home", services: ["Shopify"] },
+  { shot: assetUrl(gearUpPreview.url), name: "Gear-Up", url: "https://www.gear-up.store/", industry: "Tech & Everyday Essentials", services: ["Shopify"] },
 ];
 
 export const platforms = [

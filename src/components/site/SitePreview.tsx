@@ -22,6 +22,7 @@ export function SitePreview({ url, title, shot, duration = 22, priority = false 
   const [loaded, setLoaded] = useState(false);
   const [srcIndex, setSrcIndex] = useState(0);
   const [distance, setDistance] = useState(0);
+  const [paused, setPaused] = useState(false);
   const imgRef = useRef<HTMLImageElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);
 
@@ -31,6 +32,11 @@ export function SitePreview({ url, title, shot, duration = 22, priority = false 
     `https://api.microlink.io/?url=${encoded}&screenshot=true&meta=false&embed=screenshot.url&screenshot.fullPage=true&viewport.width=1280`,
     `https://image.thum.io/get/width/1200/fullpage/noanimate/${url}`,
   ];
+
+  useEffect(() => {
+    const image = imgRef.current;
+    if (image?.complete && image.naturalWidth > 0) setLoaded(true);
+  }, [srcIndex]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -54,6 +60,8 @@ export function SitePreview({ url, title, shot, duration = 22, priority = false 
   return (
     <div
       ref={frameRef}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
       className="relative w-full h-full overflow-hidden bg-secondary/40 group/preview"
     >
       {/* Browser chrome */}
@@ -99,6 +107,7 @@ export function SitePreview({ url, title, shot, duration = 22, priority = false 
               loaded && distance > 0
                 ? `${animName} ${duration}s cubic-bezier(0.45,0,0.55,1) infinite`
                 : undefined,
+            animationPlayState: paused ? "paused" : "running",
           }}
         />
       </div>

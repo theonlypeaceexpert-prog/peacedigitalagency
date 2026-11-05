@@ -13,13 +13,17 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AiAutomationServicesRouteImport } from './routes/ai-automation-services'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as KlaviyoEmailMarketingRouteImport } from './routes/klaviyo-email-marketing'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as ResultsRouteImport } from './routes/results'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ShopifySeoServicesRouteImport } from './routes/shopify-seo-services'
+import { Route as ShopifyWebDesignRouteImport } from './routes/shopify-web-design'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UgcRouteImport } from './routes/ugc'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin/analytics'
@@ -44,6 +48,11 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiAutomationServicesRoute = AiAutomationServicesRouteImport.update({
+  id: '/ai-automation-services',
+  path: '/ai-automation-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -57,6 +66,11 @@ const CaseStudiesRoute = CaseStudiesRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KlaviyoEmailMarketingRoute = KlaviyoEmailMarketingRouteImport.update({
+  id: '/klaviyo-email-marketing',
+  path: '/klaviyo-email-marketing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioRoute = PortfolioRouteImport.update({
@@ -77,6 +91,16 @@ const ReviewsRoute = ReviewsRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopifySeoServicesRoute = ShopifySeoServicesRouteImport.update({
+  id: '/shopify-seo-services',
+  path: '/shopify-seo-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopifyWebDesignRoute = ShopifyWebDesignRouteImport.update({
+  id: '/shopify-web-design',
+  path: '/shopify-web-design',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -105,13 +129,17 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/ai-automation-services': typeof AiAutomationServicesRoute
   '/auth': typeof AuthRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/klaviyo-email-marketing': typeof KlaviyoEmailMarketingRoute
   '/portfolio': typeof PortfolioRoute
   '/results': typeof ResultsRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
+  '/shopify-seo-services': typeof ShopifySeoServicesRoute
+  '/shopify-web-design': typeof ShopifyWebDesignRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ugc': typeof UgcRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
@@ -121,13 +149,17 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/ai-automation-services': typeof AiAutomationServicesRoute
   '/auth': typeof AuthRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/klaviyo-email-marketing': typeof KlaviyoEmailMarketingRoute
   '/portfolio': typeof PortfolioRoute
   '/results': typeof ResultsRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
+  '/shopify-seo-services': typeof ShopifySeoServicesRoute
+  '/shopify-web-design': typeof ShopifyWebDesignRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ugc': typeof UgcRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
@@ -139,13 +171,17 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/ai-automation-services': typeof AiAutomationServicesRoute
   '/auth': typeof AuthRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/klaviyo-email-marketing': typeof KlaviyoEmailMarketingRoute
   '/portfolio': typeof PortfolioRoute
   '/results': typeof ResultsRoute
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
+  '/shopify-seo-services': typeof ShopifySeoServicesRoute
+  '/shopify-web-design': typeof ShopifyWebDesignRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ugc': typeof UgcRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
@@ -157,13 +193,17 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/ai-automation-services'
     | '/auth'
     | '/case-studies'
     | '/contact'
+    | '/klaviyo-email-marketing'
     | '/portfolio'
     | '/results'
     | '/reviews'
     | '/services'
+    | '/shopify-seo-services'
+    | '/shopify-web-design'
     | '/sitemap.xml'
     | '/ugc'
     | '/admin/analytics'
@@ -173,13 +213,17 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/ai-automation-services'
     | '/auth'
     | '/case-studies'
     | '/contact'
+    | '/klaviyo-email-marketing'
     | '/portfolio'
     | '/results'
     | '/reviews'
     | '/services'
+    | '/shopify-seo-services'
+    | '/shopify-web-design'
     | '/sitemap.xml'
     | '/ugc'
     | '/admin/analytics'
@@ -190,13 +234,17 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/about'
     | '/admin'
+    | '/ai-automation-services'
     | '/auth'
     | '/case-studies'
     | '/contact'
+    | '/klaviyo-email-marketing'
     | '/portfolio'
     | '/results'
     | '/reviews'
     | '/services'
+    | '/shopify-seo-services'
+    | '/shopify-web-design'
     | '/sitemap.xml'
     | '/ugc'
     | '/_authenticated/admin/analytics'
@@ -208,13 +256,17 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
+  AiAutomationServicesRoute: typeof AiAutomationServicesRoute
   AuthRoute: typeof AuthRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
+  KlaviyoEmailMarketingRoute: typeof KlaviyoEmailMarketingRoute
   PortfolioRoute: typeof PortfolioRoute
   ResultsRoute: typeof ResultsRoute
   ReviewsRoute: typeof ReviewsRoute
   ServicesRoute: typeof ServicesRoute
+  ShopifySeoServicesRoute: typeof ShopifySeoServicesRoute
+  ShopifyWebDesignRoute: typeof ShopifyWebDesignRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UgcRoute: typeof UgcRoute
   ApiPublicReviewAvatarsRoute: typeof ApiPublicReviewAvatarsRoute
@@ -250,6 +302,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-automation-services': {
+      id: '/ai-automation-services'
+      path: '/ai-automation-services'
+      fullPath: '/ai-automation-services'
+      preLoaderRoute: typeof AiAutomationServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -269,6 +328,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/klaviyo-email-marketing': {
+      id: '/klaviyo-email-marketing'
+      path: '/klaviyo-email-marketing'
+      fullPath: '/klaviyo-email-marketing'
+      preLoaderRoute: typeof KlaviyoEmailMarketingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio': {
@@ -297,6 +363,20 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shopify-seo-services': {
+      id: '/shopify-seo-services'
+      path: '/shopify-seo-services'
+      fullPath: '/shopify-seo-services'
+      preLoaderRoute: typeof ShopifySeoServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shopify-web-design': {
+      id: '/shopify-web-design'
+      path: '/shopify-web-design'
+      fullPath: '/shopify-web-design'
+      preLoaderRoute: typeof ShopifyWebDesignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -346,13 +426,17 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
+  AiAutomationServicesRoute: AiAutomationServicesRoute,
   AuthRoute: AuthRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
+  KlaviyoEmailMarketingRoute: KlaviyoEmailMarketingRoute,
   PortfolioRoute: PortfolioRoute,
   ResultsRoute: ResultsRoute,
   ReviewsRoute: ReviewsRoute,
   ServicesRoute: ServicesRoute,
+  ShopifySeoServicesRoute: ShopifySeoServicesRoute,
+  ShopifyWebDesignRoute: ShopifyWebDesignRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UgcRoute: UgcRoute,
   ApiPublicReviewAvatarsRoute: ApiPublicReviewAvatarsRoute,

@@ -8,6 +8,7 @@ import { z } from "zod";
 import { submitContact } from "@/lib/ai.functions";
 import { AGENCY_EMAILS } from "@/lib/contact-emails";
 import { EmailChannels } from "@/components/site/EmailChannels";
+import { ReviewInvitation } from "@/components/site/ReviewInvitation";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -210,6 +211,7 @@ export default function Contact() {
           </AnimatePresence>
         </div>
       </section>
+      <ReviewInvitation />
       <EmailChannels />
     </Layout>
   );

@@ -33,6 +33,11 @@ export function SitePreview({ url, title, shot, duration = 22, priority = false 
   ];
 
   useEffect(() => {
+    const image = imgRef.current;
+    if (image?.complete && image.naturalWidth > 0) setLoaded(true);
+  }, [srcIndex]);
+
+  useEffect(() => {
     if (!loaded) return;
     const calc = () => {
       const frame = frameRef.current;

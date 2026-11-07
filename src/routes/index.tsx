@@ -6,14 +6,16 @@ import { stats, projects, services } from "@/lib/site-data";
 import { PlatformLogos } from "@/components/site/PlatformLogos";
 import { SitePreview } from "@/components/site/SitePreview";
 import { TrustedReviews } from "@/components/site/TrustedReviews";
+import { servicePages } from "@/lib/service-pages";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DǝǝPeaçeAɠency — Premium Growth for eCommerce" },
-      { name: "description", content: "We design, build and scale premium eCommerce experiences with AI-powered systems and conversion-led design." },
-      { property: "og:title", content: "DǝǝPeaçeAɠency — Premium Growth for eCommerce" },
-      { property: "og:description", content: "We design, build and scale premium eCommerce experiences with AI-powered systems and conversion-led design." },
+      { title: "DeePeace Agency — Shopify Design, SEO & eCommerce Growth" },
+      { name: "description", content: "Shopify web design, Shopify SEO services, Klaviyo email marketing and AI automation for eCommerce brands. Explore DeePeace Agency's portfolio and discuss your project." },
+      { property: "og:title", content: "DeePeace Agency — Shopify Design, SEO & eCommerce Growth" },
+      { property: "og:description", content: "Shopify web design, Shopify SEO services, Klaviyo email marketing and AI automation for eCommerce brands. Explore the portfolio and discuss your project." },
       { property: "og:url", content: "https://www.deepeaceagency.com/" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -81,8 +83,8 @@ function Home() {
             transition={{ delay: 0.4 }}
             className="mt-8 max-w-2xl text-lg text-muted-foreground"
           >
-            DǝǝPeaçeAɠency is a boutique digital growth studio crafting Shopify, AI-powered systems
-            and full-funnel marketing for ambitious global brands.
+            DǝǝPeaçeAɠency (DeePeace Agency) brings Shopify web design, Shopify SEO services,
+            Klaviyo email marketing and AI automation together for eCommerce brands worldwide.
           </motion.p>
 
           <motion.div
@@ -166,6 +168,9 @@ function Home() {
             </motion.div>
           ))}
         </div>
+        <nav aria-label="Explore specialist services" className="mt-8 flex flex-wrap gap-3">
+          {servicePages.map(page => <Button asChild variant="outline" key={page.path}><Link to={page.path}>{page.title}<ArrowUpRight /></Link></Button>)}
+        </nav>
       </section>
 
       {/* FEATURED WORK */}

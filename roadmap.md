@@ -1,8 +1,9 @@
 # SEO and private analytics
-- [ ] Add honest-review WhatsApp invitations and direct Trustpilot/Google links to Contact.
-- [ ] Research relevant buyer keywords across international markets and document evidence and limitations.
-- [ ] Apply researched search terms to public copy and focused service pages, preserving design and existing functions.
-- [ ] Verify review links, public pages, metadata, sitemap and mobile layouts.
+- [x] Add honest-review WhatsApp invitations and direct Trustpilot/Google links to Contact.
+- [x] Research relevant buyer keywords across five international markets; document evidence and limits in SEO-KEYWORD-RESEARCH.md.
+- [x] Apply researched terms to homepage, Services and UGC copy; add four focused service pages and sitemap entries.
+- [x] Verify invitation copying, link attributes, contact navigation, seven page heads, thirteen sitemap URLs and desktop/tablet/phone layouts; ten tests pass.
+- [ ] New search pages on the live custom domain await publishing and deployment to its separate host; indexing is unverified until that happens.
 - [x] Correct verified canonical, sitemap and social metadata issues without changing public content.
 - [x] Build administrator-only reports, technical checks and lead analytics.
 - [x] Integrate Search Console with verified-property selection and cached reports; verified real API access in chat.

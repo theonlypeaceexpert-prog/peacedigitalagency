@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="relative mt-32 border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 py-20">
-        <div className="grid md:grid-cols-4 gap-12">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="md:col-span-2">
             <img
               src={assetUrl(logoAsset.url)}
@@ -55,7 +55,7 @@ export function Footer() {
 
           <div>
             <h4 className="text-sm font-semibold mb-4">Contact Deepeace Agency</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2 break-words text-sm text-muted-foreground">
               <li><a href={`mailto:${AGENCY_EMAILS.general}`} className="transition hover:text-foreground">General: {AGENCY_EMAILS.general}</a></li>
               <li><a href={`mailto:${AGENCY_EMAILS.projects}`} className="transition hover:text-foreground">Projects: {AGENCY_EMAILS.projects}</a></li>
               <li><a href={`mailto:${AGENCY_EMAILS.support}`} className="transition hover:text-foreground">Support: {AGENCY_EMAILS.support}</a></li>

@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { servicePages } from "@/lib/service-pages";
-
-const BASE_URL = "https://www.deepeaceagency.com";
+import { sitemapOrigin } from "@/lib/website-reporting";
 
 interface SitemapEntry {
   path: string;
@@ -13,7 +12,8 @@ interface SitemapEntry {
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
-      GET: async () => {
+      GET: async ({ request }) => {
+        const BASE_URL = sitemapOrigin(request.url);
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/about", changefreq: "monthly", priority: "0.7" },

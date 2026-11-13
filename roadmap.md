@@ -1,6 +1,6 @@
 # SEO and private analytics
 - [x] Recheck stale SEO findings; confirm Search Console and published sitemap are corrected and add the published sitemap to crawler rules while preserving the custom-domain directive.
-- [ ] Marketing-budget guide opportunity awaits explicit content approval; it is not a technical defect.
+- [x] Add approved marketing-budget guide using US Semrush evidence (140 monthly searches, difficulty 8/100), sourced advice, hypothetical examples, service links and sitemap inclusion.
 - [x] Finish Search Console verification and sitemap submission for the published Lovable origin; live tag verified, owner access confirmed, thirteen-page sitemap submitted and pending Google processing.
 - [x] Add honest-review WhatsApp invitations and direct Trustpilot/Google links to Contact.
 - [x] Research relevant buyer keywords across five international markets; document evidence and limits in SEO-KEYWORD-RESEARCH.md.

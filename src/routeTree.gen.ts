@@ -26,6 +26,7 @@ import { Route as ShopifySeoServicesRouteImport } from './routes/shopify-seo-ser
 import { Route as ShopifyWebDesignRouteImport } from './routes/shopify-web-design'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UgcRouteImport } from './routes/ugc'
+import { Route as BlogEcommerceMarketingBudgetRouteImport } from './routes/blog.ecommerce-marketing-budget'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin/analytics'
 import { Route as ApiPublicReviewAvatarsRouteImport } from './routes/api/public/review-avatars'
 
@@ -113,6 +114,12 @@ const UgcRoute = UgcRouteImport.update({
   path: '/ugc',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogEcommerceMarketingBudgetRoute =
+  BlogEcommerceMarketingBudgetRouteImport.update({
+    id: '/blog/ecommerce-marketing-budget',
+    path: '/blog/ecommerce-marketing-budget',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedAdminAnalyticsRoute =
   AuthenticatedAdminAnalyticsRouteImport.update({
     id: '/admin/analytics',
@@ -142,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/shopify-web-design': typeof ShopifyWebDesignRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ugc': typeof UgcRoute
+  '/blog/ecommerce-marketing-budget': typeof BlogEcommerceMarketingBudgetRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
   '/api/public/review-avatars': typeof ApiPublicReviewAvatarsRoute
 }
@@ -162,6 +170,7 @@ export interface FileRoutesByTo {
   '/shopify-web-design': typeof ShopifyWebDesignRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ugc': typeof UgcRoute
+  '/blog/ecommerce-marketing-budget': typeof BlogEcommerceMarketingBudgetRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
   '/api/public/review-avatars': typeof ApiPublicReviewAvatarsRoute
 }
@@ -184,6 +193,7 @@ export interface FileRoutesById {
   '/shopify-web-design': typeof ShopifyWebDesignRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ugc': typeof UgcRoute
+  '/blog/ecommerce-marketing-budget': typeof BlogEcommerceMarketingBudgetRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
   '/api/public/review-avatars': typeof ApiPublicReviewAvatarsRoute
 }
@@ -206,6 +216,7 @@ export interface FileRouteTypes {
     | '/shopify-web-design'
     | '/sitemap.xml'
     | '/ugc'
+    | '/blog/ecommerce-marketing-budget'
     | '/admin/analytics'
     | '/api/public/review-avatars'
   fileRoutesByTo: FileRoutesByTo
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/shopify-web-design'
     | '/sitemap.xml'
     | '/ugc'
+    | '/blog/ecommerce-marketing-budget'
     | '/admin/analytics'
     | '/api/public/review-avatars'
   id:
@@ -247,6 +259,7 @@ export interface FileRouteTypes {
     | '/shopify-web-design'
     | '/sitemap.xml'
     | '/ugc'
+    | '/blog/ecommerce-marketing-budget'
     | '/_authenticated/admin/analytics'
     | '/api/public/review-avatars'
   fileRoutesById: FileRoutesById
@@ -269,6 +282,7 @@ export interface RootRouteChildren {
   ShopifyWebDesignRoute: typeof ShopifyWebDesignRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UgcRoute: typeof UgcRoute
+  BlogEcommerceMarketingBudgetRoute: typeof BlogEcommerceMarketingBudgetRoute
   ApiPublicReviewAvatarsRoute: typeof ApiPublicReviewAvatarsRoute
 }
 
@@ -393,6 +407,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UgcRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/ecommerce-marketing-budget': {
+      id: '/blog/ecommerce-marketing-budget'
+      path: '/blog/ecommerce-marketing-budget'
+      fullPath: '/blog/ecommerce-marketing-budget'
+      preLoaderRoute: typeof BlogEcommerceMarketingBudgetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/analytics': {
       id: '/_authenticated/admin/analytics'
       path: '/admin/analytics'
@@ -439,6 +460,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShopifyWebDesignRoute: ShopifyWebDesignRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UgcRoute: UgcRoute,
+  BlogEcommerceMarketingBudgetRoute: BlogEcommerceMarketingBudgetRoute,
   ApiPublicReviewAvatarsRoute: ApiPublicReviewAvatarsRoute,
 }
 export const routeTree = rootRouteImport

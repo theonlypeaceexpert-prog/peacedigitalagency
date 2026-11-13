@@ -1,5 +1,5 @@
 # SEO and private analytics
-- [ ] Finish Search Console verification and sitemap submission for the published Lovable origin; publish verification tag and origin-aware sitemap with approval.
+- [x] Finish Search Console verification and sitemap submission for the published Lovable origin; live tag verified, owner access confirmed, thirteen-page sitemap submitted and pending Google processing.
 - [x] Add honest-review WhatsApp invitations and direct Trustpilot/Google links to Contact.
 - [x] Research relevant buyer keywords across five international markets; document evidence and limits in SEO-KEYWORD-RESEARCH.md.
 - [x] Apply researched terms to homepage, Services and UGC copy; add four focused service pages and sitemap entries.

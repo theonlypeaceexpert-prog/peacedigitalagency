@@ -10,6 +10,7 @@
 <!-- LOVABLE:END -->
 
 ## Website reporting
+- Editorial guides use standalone content routes linked from relevant service pages and included in the custom sitemap; cite factual sources and distinguish hypothetical examples from client results or prices.
 - Focused public service content and page metadata share a browser-safe service catalog; the custom sitemap includes the same catalog to keep search discovery aligned.
 - Review invitations use explicit public profile links and encoded WhatsApp messages; opening or copying an invitation never submits a review or sends a message automatically.
 - Public page identity uses the preferred custom origin; asset delivery origins remain separate to preserve working media.

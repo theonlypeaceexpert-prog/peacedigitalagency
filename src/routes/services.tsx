@@ -65,6 +65,11 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
+        <div className="mt-12 border-t border-border pt-8">
+          <h2 className="text-2xl font-semibold">Plan your eCommerce marketing budget</h2>
+          <p className="mt-3 max-w-2xl text-muted-foreground">A practical guide to margins, acquisition costs and choosing between store improvements, ads, SEO, email and automation.</p>
+          <Button asChild variant="link" className="mt-4 px-0"><Link to="/blog/ecommerce-marketing-budget">Read the budget guide <ArrowUpRight /></Link></Button>
+        </div>
       </section>
     </Layout>
   );

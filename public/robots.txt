@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.deepeaceagency.com/sitemap.xml
+Sitemap: https://peacedigitalagency.lovable.app/sitemap.xml

@@ -12,9 +12,14 @@ function expect(value: unknown) {
     not: { toThrow: () => assert.doesNotThrow(value as () => unknown) },
   };
 }
-import { canonicalUrl, completedLeadRate, coversWebsite, equivalentPrevious, percentChange, requireAdminRole, validateRange } from "./website-reporting";
+import { canonicalUrl, completedLeadRate, coversWebsite, equivalentPrevious, percentChange, requireAdminRole, sitemapOrigin, validateRange } from "./website-reporting";
 
 describe("website reporting rules", () => {
+  test("published-site sitemap covers its exact origin without changing custom-domain identity", () => {
+    expect(sitemapOrigin("https://peacedigitalagency.lovable.app/sitemap.xml")).toBe("https://peacedigitalagency.lovable.app");
+    expect(sitemapOrigin("https://www.deepeaceagency.com/sitemap.xml")).toBe("https://www.deepeaceagency.com");
+    expect(sitemapOrigin("https://attacker.test/sitemap.xml")).toBe("https://www.deepeaceagency.com");
+  });
   test("canonical page identity uses HTTPS www and excludes tracking parameters", () => {
     expect(canonicalUrl("/contact/?utm_source=google")).toBe("https://www.deepeaceagency.com/contact");
     expect(canonicalUrl("/?ref=ads")).toBe("https://www.deepeaceagency.com/");

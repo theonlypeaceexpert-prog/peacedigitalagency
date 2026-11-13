@@ -1,4 +1,8 @@
 export const WEBSITE_ORIGIN = "https://www.deepeaceagency.com";
+export function sitemapOrigin(requestUrl: string) {
+  const publishedOrigin = "https://peacedigitalagency.lovable.app";
+  return new URL(requestUrl).origin === publishedOrigin ? publishedOrigin : WEBSITE_ORIGIN;
+}
 export const PUBLIC_PAGE_PATHS = ["/", "/about", "/services", "/portfolio", "/ugc", "/case-studies", "/results", "/reviews", "/contact"];
 export type ReportRange = { start: string; end: string };
 export type SeriesRow = { label: string; primary: number; secondary: number };

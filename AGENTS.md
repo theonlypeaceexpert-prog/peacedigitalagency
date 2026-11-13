@@ -13,6 +13,7 @@
 - Focused public service content and page metadata share a browser-safe service catalog; the custom sitemap includes the same catalog to keep search discovery aligned.
 - Review invitations use explicit public profile links and encoded WhatsApp messages; opening or copying an invitation never submits a review or sends a message automatically.
 - Public page identity uses the preferred custom origin; asset delivery origins remain separate to preserve working media.
+- Sitemap locations use the exact allowlisted published origin on Lovable hosting and the preferred custom origin elsewhere, so both properties have usable sitemaps without changing page canonicals.
 - Private analytics lives under the authenticated route layout; every reporting server function independently verifies the caller's admin role because page guards do not protect endpoints.
 - Reporting settings, cached aggregate snapshots, and issue review states use admin-scoped RLS; credentials never enter report payloads.
 - Search Console property selection comes from currently verified covering properties; saved snapshots are read until an explicit refresh, with no fabricated traffic or indexing verdicts.

@@ -81,6 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "lXdEyKn-DB9u3M31oeOzVhoeO-yeeUljFYLVt9TbF70" },
       { title: "DǝǝPeaçeAɠency — Premium Digital Growth for eCommerce Brands" },
       { name: "description", content: "Elite digital agency specializing in Shopify, AI automation, performance marketing and conversion-led design for ambitious eCommerce brands." },
       { property: "og:title", content: "DǝǝPeaçeAɠency — Premium Digital Growth for eCommerce Brands" },
